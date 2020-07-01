@@ -1,0 +1,49 @@
+{
+    "name": "Ultrasonic", 
+    "version": "3.0.0", 
+    "keywords": [
+        "sensors"
+    ], 
+    "description": "Minimalist library for ultrasound module to Arduino", 
+    "frameworks": [
+        "arduino"
+    ], 
+    "platforms": [
+        "atmelavr", 
+        "atmelsam", 
+        "espressif32", 
+        "espressif8266", 
+        "intel_arc32", 
+        "microchippic32", 
+        "nordicnrf51", 
+        "nordicnrf52", 
+        "ststm32", 
+        "teensy", 
+        "timsp430"
+    ], 
+    "authors": [
+        {
+            "email": "erick.simoes@live.com", 
+            "url": null, 
+            "maintainer": true, 
+            "name": "Erick Sim\u00f5es"
+        }
+    ], 
+    "repository": {
+        "type": "git", 
+        "url": "https://github.com/ErickSimoes/Ultrasonic"
+    }, 
+    "homepage": null, 
+    "export": {
+        "include": null, 
+        "exclude": [
+            "extras", 
+            "docs", 
+            "tests", 
+            "test", 
+            "*.doxyfile", 
+            "*.pdf"
+        ]
+    }, 
+    "id": 1507
+}
