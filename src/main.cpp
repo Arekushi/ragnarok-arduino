@@ -15,8 +15,6 @@ void readDistance() {
     distanceCM = ultrasonic.read();
 }
 
-#pragma endregion
-
 void setup() {
     Serial.begin(9600);
 }
