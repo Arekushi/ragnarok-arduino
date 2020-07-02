@@ -1,26 +1,24 @@
 #include <Arduino.h>
+
+/* Cart */
 #include <Ultrasonic.h>
+#include <Cart.h>
 
-#pragma region Variables
+/* States Machine */
+#include <StateMachine.h>
+#include <State.h>
+#include <Front.h>
 
-Ultrasonic ultrasonic(7, 6);
-long microsec = 0;
-float distanceCM = 0;
+Cart cart;
+State* state = new Front();
 
-#pragma endregion
-
-#pragma region Methods
-
-void readDistance() {
-    distanceCM = ultrasonic.read();
-}
+StateMachine machine(cart, state);
 
 void setup() {
     Serial.begin(9600);
 }
 
 void loop() {
-    readDistance();
-
-    Serial.println(distanceCM);
+    machine.ExecuteState();
+    delay(5000);
 }
