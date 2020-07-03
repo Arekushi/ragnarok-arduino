@@ -2,16 +2,16 @@
 #include <Ultra.h>
 #include <Ultrasonic.h>
 
-Ultra::Ultra(int port1, int port2) {
+Ultra::Ultra(int8_t port1, int8_t port2) {
     this->ultrasonic = new Ultrasonic(port1, port2);
 }
 
-float Ultra::readDistance() {
+float Ultra::read() {
     return ultrasonic->read();
 }
 
-void Ultra::showDistance() {
+void Ultra::show() {
     Serial.print("Distância: ");
-    Serial.print(readDistance());
+    Serial.print(read());
     Serial.println(" cm.");
 }

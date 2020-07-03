@@ -5,13 +5,16 @@
 
 class InfraRed {
     
-    float port;
-    float value;
+    private:
+        float port;
 
     public:
-        InfraRed(float port);
-        void setup();
+        String name;
+
+        InfraRed(String name, float port);
         float read();
+        void setup();
+        void show();
 };
 
 #endif

@@ -7,9 +7,9 @@
 class Ultra {
 
     public:
-        Ultra(int port1, int port2);
-        float readDistance();
-        void showDistance();
+        Ultra(int8_t port1, int8_t port2);
+        float read();
+        void show();
 
     private:
         Ultrasonic *ultrasonic;
