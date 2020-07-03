@@ -15,6 +15,7 @@ class StateMachine {
     public:
         StateMachine(T &owner, State<T> *state) : owner(owner) {
             currentState = state;
+            currentState->enter(owner);
         }
 
         void switchState(State<T> *newState) {

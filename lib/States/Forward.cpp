@@ -7,7 +7,7 @@ void Forward::enter(Car car) {
 }
 
 void Forward::execute(Car car) {
-    Serial.println("Execute");
+    car.goForward();
 }
 
 void Forward::exit(Car car) {
