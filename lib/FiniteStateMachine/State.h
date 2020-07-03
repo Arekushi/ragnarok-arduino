@@ -2,13 +2,13 @@
 #define State_h
 
 #include <Arduino.h>
-#include <Cart.h>
 
+template <class T>
 class State {
     public:
-        virtual void enter(Cart cart);
-        virtual void execute(Cart cart);
-        virtual void exit(Cart cart);
+        virtual void enter(T owner);
+        virtual void execute(T owner);
+        virtual void exit(T owner);
 };
 
 #endif
