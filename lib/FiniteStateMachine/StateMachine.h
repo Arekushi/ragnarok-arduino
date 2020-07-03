@@ -2,21 +2,35 @@
 #define StateMachine_h
 
 #include <Arduino.h>
-#include <Cart.h>
 #include <State.h>
 
+template<class T>
 class StateMachine {
 
-    protected:
-        State* currentState;
-        State* previousState;
-        Cart cart;
+    private:
+        T &owner;
+        State<T> *currentState;
+        State<T> *previousState;
 
     public:
-        StateMachine(Cart cart, State* state);
-        void SwitchState(State* newState);
-        void SwitchPreviousState();
-        void ExecuteState();
+        StateMachine(T &owner, State<T> *state) : owner(owner) {
+            currentState = state;
+        }
+
+        void switchState(State<T> *newState) {
+            currentState->exit(owner);
+            previousState = currentState;
+            currentState = newState;
+            currentState->enter(owner);
+        }
+
+        void switchPreviousState() {
+            switchState(previousState);
+        }
+
+        void executeState() {
+            currentState->execute(this->owner);
+        }
 };
 
 #endif

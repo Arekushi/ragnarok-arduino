@@ -1,24 +1,21 @@
 #include <Arduino.h>
 
 /* Cart */
-#include <Ultrasonic.h>
-#include <Cart.h>
+#include <Car.h>
 
 /* States Machine */
-#include <StateMachine.h>
 #include <State.h>
-#include <Front.h>
+#include <Forward.h>
 
-Cart cart;
-State* state = new Front();
-
-StateMachine machine(cart, state);
+State<Car> *forward = new Forward();
+Car car(7, 6, forward);
 
 void setup() {
     Serial.begin(9600);
 }
 
 void loop() {
-    machine.ExecuteState();
-    delay(5000);
+    delay(500);
+    
+    car.machine->executeState();
 }
