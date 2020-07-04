@@ -1,19 +1,19 @@
 #include <Arduino.h>
-
-/* Cart */
 #include <Car.h>
-
-/* States Machine */
 #include <State.h>
 #include <Forward.h>
 
-State<Car> *forward = new Forward();
-Car car(forward);
+State<Car> *states[10] = 
+{ 
+    new Forward()
+};
+
+Car car(states);
 
 void setup() {
     Serial.begin(9600);
 }
 
-void loop() {   
+void loop() {
     car.machine->executeState();
 }
