@@ -1,16 +1,17 @@
 #ifndef Forward_State_h
 #define Forward_State_h
 
-#include <Arduino.h>
 #include <State.h>
 #include <Car.h>
 
-class Forward : public State<Car> {
+using namespace AbstractFiniteStateMachine;
+
+class Forward : public State<Car> {       
 
     public:
-        void enter(Car car) override;
-        void execute(Car car) override;
-        void exit(Car car) override;
+        Forward();
+        void enter(Car data) override;
+        void exit(Car data) override;
 };
 
 #endif

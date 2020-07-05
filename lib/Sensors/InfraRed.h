@@ -6,12 +6,12 @@
 class InfraRed {
     
     private:
-        float port;
+        byte port;
 
     public:
         String name;
 
-        InfraRed(String name, float port);
+        InfraRed(String name, byte port);
         float read();
         void setup();
         void show();

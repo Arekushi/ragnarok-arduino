@@ -7,7 +7,7 @@
 class Ultra {
 
     public:
-        Ultra(int8_t port1, int8_t port2);
+        Ultra(byte port1, byte port2);
         float read();
         void show();
 

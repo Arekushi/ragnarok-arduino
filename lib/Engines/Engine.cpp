@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Engine.h>
 
-Engine::Engine(int8_t port) {
+Engine::Engine(byte port) {
     this->port = port;
 }
 
@@ -9,6 +9,6 @@ void Engine::setup() {
     pinMode(port, OUTPUT);
 }
 
-void Engine::write(int8_t power) {
+void Engine::write(byte power) {
     analogWrite(port, power);
 }

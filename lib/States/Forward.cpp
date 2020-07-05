@@ -1,18 +1,11 @@
-#include <Arduino.h>
 #include <Forward.h>
 #include <Car.h>
 
-#define powerForward 40
-
-void Forward::enter(Car car) {
-    Serial.println("Enter");
+Forward::Forward() {
 }
 
-void Forward::execute(Car car) {
-    car.goForward(powerForward);
-    Serial.println("Forward");
+void Forward::enter(Car data) {
 }
 
-void Forward::exit(Car car) {
-    Serial.println("Exit");
+void Forward::exit(Car data) { 
 }

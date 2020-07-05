@@ -6,12 +6,12 @@
 class Engine {
     
     private:
-        int8_t port;
+        byte port;
 
     public:
-        Engine(int8_t port);
+        Engine(byte port);
         void setup();
-        void write(int8_t power);
+        void write(byte power);
 };
 
 #endif
