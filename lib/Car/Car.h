@@ -2,8 +2,8 @@
 #define Car_h
 
 #include <Arduino.h>
-#include <Ultra.h>
 #include <StateMachine.h>
+#include <Ultra.h>
 #include <InfraRed.h>
 #include <Engine.h>
 

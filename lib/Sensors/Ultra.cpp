@@ -1,5 +1,5 @@
-#include <Arduino.h>
 #include <Ultra.h>
+#include <Arduino.h>
 #include <Ultrasonic.h>
 
 Ultra::Ultra(byte port1, byte port2) {

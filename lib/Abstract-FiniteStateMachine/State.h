@@ -40,7 +40,7 @@ namespace AbstractFiniteStateMachine {
             void executeAction(T data) {
                 Action<T> **array = actions->getArray();
 
-                for(byte i = 0; i < actions->length; i++) {
+                for(byte i = 0; i < actions->getLength(); i++) {
                     array[i]->execute(data);
                 }
             }
@@ -48,9 +48,10 @@ namespace AbstractFiniteStateMachine {
             void checkTransitions(StateMachine<T> machine) {
                 Transition<T> **array = transitions->getArray();
 
-                for(byte i = 0; i < transitions->length; i++) {
+                for(byte i = 0; i < transitions->getLength(); i++) {
                     if(array[i]->getDecision()->decision(machine.data)) {
                         machine.transitionNextState(array[i]->getTrueState());
+
                     } else {
                         machine.transitionNextState(array[i]->getFalseState());
                     }
@@ -62,8 +63,8 @@ namespace AbstractFiniteStateMachine {
                 checkTransitions(machine);
             }
 
-            virtual void enter(T data);
-            virtual void exit(T data);
+            virtual void enter(T data) = 0;
+            virtual void exit(T data) = 0;
     };
 }
 

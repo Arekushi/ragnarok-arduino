@@ -1,8 +1,8 @@
 #include <Car.h>
-#include <Arduino.h>
-#include <Ultra.h>
 #include <StateMachine.h>
+#include <Arduino.h>
 #include <State.h>
+#include <Ultra.h>
 
 Car::Car(State<Car> *startState) {
     setupInfraReds();

@@ -36,7 +36,7 @@ namespace AbstractFiniteStateMachine {
             void setCurrentState(State<T> *newState) {
                 currentState->exit(data);
                 previousState = currentState;
-                currentState = newState;
+                *currentState = *newState;
                 currentState->enter(data);
             }
 

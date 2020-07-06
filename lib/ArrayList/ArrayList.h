@@ -6,10 +6,9 @@ class ArrayList {
 
     private:
         T **data = new T*[0];
+        byte length = 0;
 
     public:
-        static byte length;
-
         void addElement(T *element) {
             T **newData = new T*[length+1];
 
@@ -23,12 +22,13 @@ class ArrayList {
             length++;
         }
 
+        byte getLength() {
+            return length;
+        }
+
         T **getArray() {
             return data;
         }
 };
-
-template<class T>
-byte ArrayList<T>::length = 0;
 
 #endif

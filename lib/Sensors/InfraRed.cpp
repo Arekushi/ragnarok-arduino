@@ -1,5 +1,5 @@
-#include <Arduino.h>
 #include <InfraRed.h>
+#include <Arduino.h>
 
 InfraRed::InfraRed(String name, byte port) {
     this->name = name;
