@@ -1,15 +1,15 @@
-#ifndef Forward_State_h
-#define Forward_State_h
+#ifndef Back_State_h
+#define Back_State_h
 
 #include <State.h>
 #include <Car.h>
 
 using namespace AbstractFiniteStateMachine;
 
-class Forward : public State<Car> {       
+class Back : public State<Car> {
 
     public:
-        Forward();
+        Back();
         void enter(Car data) override;
         void exit(Car data) override;
 };
