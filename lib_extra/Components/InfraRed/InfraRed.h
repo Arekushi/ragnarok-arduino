@@ -12,7 +12,8 @@ class InfraRed {
         String name;
 
         InfraRed(String name, byte port);
-        float read();
+        float analog_float();
+        bool digital_bool();
         void setup();
         void show();
 };

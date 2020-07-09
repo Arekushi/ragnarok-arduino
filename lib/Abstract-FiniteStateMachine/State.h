@@ -6,11 +6,15 @@
 #include <Transition.h>
 #include <StateMachine.h>
 #include <ArrayList.h>
+#include <Singleton.h>
 
 namespace AbstractFiniteStateMachine {
 
     template <class T>
     class State {
+
+        friend class Singleton<T>;
+
         private:
             ArrayList<Action<T>> *actions;
             ArrayList<Transition<T>> *transitions; 
@@ -37,7 +41,7 @@ namespace AbstractFiniteStateMachine {
                 transitions->addElement(transition);
             }
 
-            void executeAction(T data) {
+            void executeAction(T &data) {
                 Action<T> **array = actions->getArray();
 
                 for(byte i = 0; i < actions->getLength(); i++) {
@@ -45,7 +49,7 @@ namespace AbstractFiniteStateMachine {
                 }
             }
 
-            void checkTransitions(StateMachine<T> machine) {
+            void checkTransitions(StateMachine<T> &machine) {
                 Transition<T> **array = transitions->getArray();
 
                 for(byte i = 0; i < transitions->getLength(); i++) {

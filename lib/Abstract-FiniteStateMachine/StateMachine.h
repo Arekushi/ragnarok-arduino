@@ -10,7 +10,6 @@ namespace AbstractFiniteStateMachine {
 
         private:
             State<T> *currentState;
-            State<T> *remainState;
             State<T> *previousState;
 
         public:
@@ -25,10 +24,6 @@ namespace AbstractFiniteStateMachine {
                 return currentState;
             }
 
-            State<T> *getRemainState() {
-                return remainState;
-            }
-
             State<T> *getPreviousState() {
                 return previousState;
             }
@@ -36,7 +31,7 @@ namespace AbstractFiniteStateMachine {
             void setCurrentState(State<T> *newState) {
                 currentState->exit(data);
                 previousState = currentState;
-                *currentState = *newState;
+                currentState = newState;
                 currentState->enter(data);
             }
 
@@ -45,7 +40,7 @@ namespace AbstractFiniteStateMachine {
             }
 
             void transitionNextState(State<T> *nextState) {
-                if(nextState != remainState) {
+                if(nextState != currentState) {
                     setCurrentState(nextState);
                 }
             }

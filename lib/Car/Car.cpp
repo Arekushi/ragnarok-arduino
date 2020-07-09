@@ -1,14 +1,15 @@
 #include <Car.h>
-#include <StateMachine.h>
+#include <CarConfigs.h>
 #include <Arduino.h>
+#include <StateMachine.h>
 #include <State.h>
 #include <Ultra.h>
 
 Car::Car(State<Car> *startState) {
     setupInfraReds();
     setupEngines();
+    setupUltra();
 
-    ultra = new Ultra(ultra_port1, ultra_port2);
     machine = new StateMachine<Car>(*this, startState);
 }
 
@@ -17,10 +18,17 @@ void Car::showSensors() {
         infras[i]->show();
     }
 
-    ultra->show();
+    //ultra->show();
 }
 
-//#region [Moviment Methods]
+void Car::goForward(byte POWER) {
+    left_engines[0]->write(LOW);
+    left_engines[1]->write(POWER);
+
+    right_engines[0]->write(LOW);
+    right_engines[1]->write(POWER);
+}
+
 void Car::goBack(byte POWER) {
     left_engines[0]->write(POWER);
     left_engines[1]->write(LOW);
@@ -29,9 +37,17 @@ void Car::goBack(byte POWER) {
     right_engines[1]->write(LOW);
 }
 
-void Car::goForward(byte POWER) {
+void Car::righting(byte POWER) {
     left_engines[0]->write(LOW);
     left_engines[1]->write(POWER);
+
+    right_engines[0]->write(POWER);
+    right_engines[1]->write(LOW);
+}
+
+void Car::lefting(byte POWER) {
+    left_engines[0]->write(POWER);
+    left_engines[1]->write(LOW);
 
     right_engines[0]->write(LOW);
     right_engines[1]->write(POWER);
@@ -44,4 +60,3 @@ void Car::stop() {
     right_engines[0]->write(HIGH);
     right_engines[1]->write(HIGH);
 }
-//#endregion
