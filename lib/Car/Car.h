@@ -6,20 +6,14 @@
 #include <Ultra.h>
 #include <InfraRed.h>
 #include <Engine.h>
+#include <CarConfigs.h>
 
+using namespace PortConfigs;
+using namespace OtherConfigs;
 using namespace AbstractFiniteStateMachine;
 
-const byte ultra_port1 = 7;
-const byte ultra_port2 = 6;
-
-const String infras_names[] = { "Left", "Center", "Right" };
-const byte infras_ports[] = { A0, A1, A2 };
-
-const byte left_engines_ports[] = { 11, 10 };
-const byte right_engines_ports[] = { 5, 9 };
-
 class Car {
-
+    
     public:
         Ultra *ultra;
         InfraRed *infras[3];
@@ -33,6 +27,12 @@ class Car {
         void goForward(byte POWER);
         void goBack(byte POWER);
         void stop();
+
+        void lefting(byte POWER);
+        void righting(byte POWER);
+
+        void virandoEsquerda(byte POWER);
+        void virandoDireita(byte POWER);
     
     private:
         void setupInfraReds() {
@@ -46,6 +46,10 @@ class Car {
                 left_engines[i] = new Engine(left_engines_ports[i]);
                 right_engines[i] = new Engine(right_engines_ports[i]);
             }
+        }
+
+        void setupUltra() {
+            ultra = new Ultra(ultra_ports[0], ultra_ports[1]);
         }
 };
 
