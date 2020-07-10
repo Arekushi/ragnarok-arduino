@@ -15,9 +15,9 @@ namespace AbstractFiniteStateMachine {
 
         friend class Singleton<T>;
 
-        private:
+        protected:
             ArrayList<Action<T>> *actions;
-            ArrayList<Transition<T>> *transitions; 
+            ArrayList<Transition<T>> *transitions;
 
         public:
             State() {
@@ -69,6 +69,7 @@ namespace AbstractFiniteStateMachine {
 
             virtual void enter(T data) = 0;
             virtual void exit(T data) = 0;
+            virtual void setup() = 0;
     };
 }
 

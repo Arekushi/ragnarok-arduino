@@ -37,7 +37,7 @@ void Car::goBack(byte POWER) {
     right_engines[1]->write(LOW);
 }
 
-void Car::righting(byte POWER) {
+void Car::lefting(byte POWER) {
     left_engines[0]->write(LOW);
     left_engines[1]->write(POWER);
 
@@ -45,7 +45,7 @@ void Car::righting(byte POWER) {
     right_engines[1]->write(LOW);
 }
 
-void Car::lefting(byte POWER) {
+void Car::righting(byte POWER) {
     left_engines[0]->write(POWER);
     left_engines[1]->write(LOW);
 

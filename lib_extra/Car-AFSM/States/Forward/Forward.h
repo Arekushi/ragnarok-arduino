@@ -10,8 +10,10 @@ class Car;
 class Forward : public State<Car> {
 
     public:
+        Forward();
         void enter(Car data) override;
         void exit(Car data) override;
+        void setup() override;
 };
 
 #endif

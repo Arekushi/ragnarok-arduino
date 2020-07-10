@@ -3,7 +3,8 @@
 
 namespace AbstractFiniteStateMachine {
 
-    template <class T> class State;
+    template <class T>
+    class State;
 
     template<class T>
     class StateMachine {
@@ -40,7 +41,7 @@ namespace AbstractFiniteStateMachine {
             }
 
             void transitionNextState(State<T> *nextState) {
-                if(nextState != currentState) {
+                if(nextState != nullptr) {
                     setCurrentState(nextState);
                 }
             }
