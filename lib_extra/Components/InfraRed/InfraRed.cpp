@@ -8,12 +8,12 @@ InfraRed::InfraRed(String name, byte port) {
     setup();
 }
 
-float InfraRed::analog_float() {
-    return analogRead(port);
+void InfraRed::read() {
+    value = digitalRead(port);
 }
 
-bool InfraRed::digital_bool() {
-    return digitalRead(port);
+bool InfraRed::getValue() {
+    return value;
 }
 
 void InfraRed::setup() {
@@ -22,5 +22,5 @@ void InfraRed::setup() {
 
 void InfraRed::show() {
     Serial.print(name+ F(": "));
-    Serial.println(digital_bool());
+    Serial.println(value);
 }

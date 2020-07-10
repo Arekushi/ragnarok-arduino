@@ -7,13 +7,14 @@ class InfraRed {
     
     private:
         byte port;
+        bool value;
 
     public:
         String name;
 
         InfraRed(String name, byte port);
-        float analog_float();
-        bool digital_bool();
+        bool getValue();
+        void read();
         void setup();
         void show();
 };
