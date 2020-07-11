@@ -5,7 +5,6 @@
 #include <Action.h>
 #include <Transition.h>
 #include <StateMachine.h>
-#include <ArrayList.h>
 #include <Singleton.h>
 
 namespace AbstractFiniteStateMachine {
@@ -16,48 +15,43 @@ namespace AbstractFiniteStateMachine {
         friend class Singleton<T>;
 
         protected:
-            ArrayList<Action<T>> *actions;
-            ArrayList<Transition<T>> *transitions;
+            Action<T> **actions;
+            Transition<T> **transitions;
+            byte actions_size;
+            byte transitions_size;
+            bool isSetup = false;
 
         public:
             State() {
-               actions = new ArrayList<Action<T>>; 
-               transitions = new ArrayList<Transition<T>>; 
-            }
-
-            ArrayList<Action<T>> *getArrayActions() {
-                return actions;
-            }
-
-            ArrayList<Action<T>> *getArrayTransitions() {
-                return transitions;
+                actions = new Action<T>*[20];
+                transitions = new Transition<T>*[20];
+                actions_size = 0;
+                transitions_size = 0;
             }
 
             void addAction(Action<T> *action) {
-                actions->addElement(action);
+                actions[actions_size] = action;
+                actions_size++;;
             }
 
             void addTransition(Transition<T> *transition) {
-                transitions->addElement(transition);
+                transitions[transitions_size] = transition;
+                transitions_size++;
             }
 
             void executeAction(T &data) {
-                Action<T> **array = actions->getArray();
-
-                for(byte i = 0; i < actions->getLength(); i++) {
-                    array[i]->execute(data);
+                for(byte i = 0; i < actions_size; i++) {
+                    actions[i]->execute(data);
                 }
             }
 
             void checkTransitions(StateMachine<T> &machine) {
-                Transition<T> **array = transitions->getArray();
-
-                for(byte i = 0; i < transitions->getLength(); i++) {
-                    if(array[i]->getDecision()->decision(machine.data)) {
-                        machine.transitionNextState(array[i]->getTrueState());
+                for(byte i = 0; i < transitions_size; i++) {
+                    if(transitions[i]->getDecision()->decision(machine.data)) {
+                        machine.transitionNextState(transitions[i]->getTrueState());
 
                     } else {
-                        machine.transitionNextState(array[i]->getFalseState());
+                        machine.transitionNextState(transitions[i]->getFalseState());
                     }
                 }
             }
@@ -69,7 +63,14 @@ namespace AbstractFiniteStateMachine {
 
             virtual void enter(T data) = 0;
             virtual void exit(T data) = 0;
-            virtual void setup() = 0;
+            virtual void setActions() = 0;
+            virtual void setTransitions() = 0;
+
+            virtual void setup() {
+                isSetup = true;
+                setTransitions();
+                setActions();
+            }
     };
 }
 

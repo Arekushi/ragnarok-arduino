@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <StateMachine.h>
-#include <Ultra.h>
+#include <Ultrasonic.h>
 #include <InfraRed.h>
 #include <Engine.h>
 #include <CarConfigs.h>
@@ -15,24 +15,20 @@ using namespace AbstractFiniteStateMachine;
 class Car {
     
     public:
-        Ultra *ultra;
+        Ultrasonic *ultrasonic;
         InfraRed *infras[3];
         Engine *left_engines[2];
         Engine *right_engines[2];
         StateMachine<Car> *machine;
 
-        Car(State<Car> *startState);
-        void showSensors();
+        Car(State<Car> *state);
+        void showInfraReds();
 
         void goForward(byte POWER);
         void goBack(byte POWER);
-        void stop();
-
         void lefting(byte POWER);
         void righting(byte POWER);
-
-        void virandoEsquerda(byte POWER);
-        void virandoDireita(byte POWER);
+        void stop();
     
     private:
         void setupInfraReds() {
@@ -48,8 +44,8 @@ class Car {
             }
         }
 
-        void setupUltra() {
-            ultra = new Ultra(ultra_ports[0], ultra_ports[1]);
+        void setupUltrasonic() {
+            ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
         }
 };
 

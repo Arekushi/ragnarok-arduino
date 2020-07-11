@@ -21,6 +21,6 @@ class Singleton {
 };
 
 template<class T>
-T *Singleton<T>::instance;
+T *Singleton<T>::instance = 0;
 
 #endif

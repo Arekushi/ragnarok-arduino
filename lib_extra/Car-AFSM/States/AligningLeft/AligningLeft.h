@@ -10,10 +10,10 @@ class Car;
 class AligningLeft : public State<Car> {
 
     public:
-        AligningLeft();
         void enter(Car data) override;
         void exit(Car data) override;
-        void setup() override;
+        void setActions() override;
+        void setTransitions() override;
 };
 
 #endif

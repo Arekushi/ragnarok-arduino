@@ -3,22 +3,19 @@
 #include <Arduino.h>
 #include <StateMachine.h>
 #include <State.h>
-#include <Ultra.h>
 
-Car::Car(State<Car> *startState) {
+Car::Car(State<Car> *state) {
     setupInfraReds();
     setupEngines();
-    setupUltra();
+    setupUltrasonic();
 
-    machine = new StateMachine<Car>(*this, startState);
+    machine = new StateMachine<Car>(*this, state);
 }
 
-void Car::showSensors() {
+void Car::showInfraReds() {
     for(byte i = 0; i < 3; i++) {
         infras[i]->show();
     }
-
-    //ultra->show();
 }
 
 void Car::goForward(byte POWER) {

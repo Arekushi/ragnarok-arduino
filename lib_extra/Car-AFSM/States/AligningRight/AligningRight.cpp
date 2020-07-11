@@ -2,16 +2,14 @@
 #include <Arduino.h>
 #include <Car.h>
 
+#include <Forward.h>
 #include <Righting.h>
 #include <ReadInfra.h>
-#include <Forward.h>
 #include <CenterSensorActivated.h>
 
-AligningRight::AligningRight() {
-    setup();
-}
-
 void AligningRight::enter(Car data) {
+    if(!isSetup) setup();
+    
     Serial.println(F("Entrando em AligningRight"));
 }
 
@@ -19,12 +17,14 @@ void AligningRight::exit(Car data) {
     Serial.println(F("Saindo de AligningRight"));
 }
 
-void AligningRight::setup() {
+void AligningRight::setActions() {
     addAction(Singleton<Righting>::getInstance());
     addAction(Singleton<ReadInfra>::getInstance());
+}
 
-    /*addTransition(new Transition<Car>(
+void AligningRight::setTransitions() {
+    addTransition(new Transition<Car>(
         Singleton<CenterSensorActivated>::getInstance(), 
         Singleton<Forward>::getInstance(),
-        nullptr));*/
+        nullptr));
 }
