@@ -3,13 +3,11 @@
 #include <Car.h>
 
 void Back::enter(Car data) {
-    if(!isSetup) setup();
-
-    Serial.println(F("Entrando em Back"));
+    base::enter(data);
 }
 
 void Back::exit(Car data) {
-    Serial.println(F("Saindo de Back"));
+    base::exit(data);
 }
 
 void Back::setActions() { 

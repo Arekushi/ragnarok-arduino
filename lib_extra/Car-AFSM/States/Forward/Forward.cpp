@@ -17,14 +17,14 @@
 #include <CenterSensorActivated.h>
 
 void Forward::enter(Car data) {    
-    Serial.println(F("Entrando em Forward"));
+    base::enter(data);
 }
 
 void Forward::exit(Car data) {
     data.stop();
     delay(500);
 
-    Serial.println(F("Saindo de Forward"));
+    base::exit(data);
 }
 
 void Forward::setActions() {

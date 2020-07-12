@@ -8,13 +8,11 @@
 #include <CenterSensorActivated.h>
 
 void AligningLeft::enter(Car data) {
-    if(!isSetup) setup();
-    
-    Serial.println(F("Entrando em AligningLeft"));
+    base::enter(data);
 }
 
 void AligningLeft::exit(Car data) {
-    Serial.println(F("Saindo de AligningLeft"));
+    base::exit(data);
 }
 
 void AligningLeft::setActions() {

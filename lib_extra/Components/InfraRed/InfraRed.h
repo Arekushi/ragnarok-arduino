@@ -10,9 +10,9 @@ class InfraRed {
         bool value;
 
     public:
-        String name;
+        const char *name;
 
-        InfraRed(String name, byte port);
+        InfraRed(const char *name, byte port);
         bool getValue();
         void read();
         void setup();

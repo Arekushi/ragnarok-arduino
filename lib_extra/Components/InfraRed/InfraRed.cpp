@@ -1,7 +1,7 @@
 #include <InfraRed.h>
 #include <Arduino.h>
 
-InfraRed::InfraRed(String name, byte port) {
+InfraRed::InfraRed(const char *name, byte port) {
     this->name = name;
     this->port = port;
 
@@ -21,6 +21,7 @@ void InfraRed::setup() {
 }
 
 void InfraRed::show() {
-    Serial.print(name+ F(": "));
-    Serial.println(value);
+    //Serial.print(name);
+    //Serial.print(F(" : "));
+    //Serial.println(value);
 }

@@ -10,6 +10,7 @@ class Car;
 class Forward : public State<Car> {
 
     public:
+        Forward() : base::State("Forward") {}
         void enter(Car data) override;
         void exit(Car data) override;
         void setActions() override;

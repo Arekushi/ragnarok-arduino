@@ -10,6 +10,7 @@ class Car;
 class Stationary : public State<Car> {
 
     public:
+        Stationary() : base::State("Stationary") {}
         void enter(Car data) override;
         void exit(Car data) override;
         void setActions() override;

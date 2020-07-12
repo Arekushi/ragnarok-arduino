@@ -5,13 +5,11 @@
 #include <Forward.h>
 
 void Stationary::enter(Car data) {
-    if(!isSetup) setup();
-
-    Serial.println(F("Entrando em Stationary"));
+    base::enter(data);
 }
 
 void Stationary::exit(Car data) {
-    Serial.println(F("Saindo de Stationary"));
+    base::exit(data);
 }
 
 void Stationary::setActions() {

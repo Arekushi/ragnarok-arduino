@@ -15,15 +15,13 @@ using namespace AbstractFiniteStateMachine;
 class Car {
     
     public:
-        Ultrasonic *ultrasonic;
         InfraRed *infras[3];
         Engine *left_engines[2];
         Engine *right_engines[2];
+        Ultrasonic *ultrasonic;
         StateMachine<Car> *machine;
 
         Car(State<Car> *state);
-        void showInfraReds();
-
         void goForward(byte POWER);
         void goBack(byte POWER);
         void lefting(byte POWER);
@@ -42,10 +40,6 @@ class Car {
                 left_engines[i] = new Engine(left_engines_ports[i]);
                 right_engines[i] = new Engine(right_engines_ports[i]);
             }
-        }
-
-        void setupUltrasonic() {
-            ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
         }
 };
 

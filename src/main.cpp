@@ -5,10 +5,7 @@
 Car *car;
 
 void setup() {
-    State<Car> *forward = Singleton<Forward>::getInstance();
-    car = new Car(forward);
-
-    forward->setup();
+    car = new Car(Singleton<Forward>::getInstance());
     Serial.begin(9600);
 }
 

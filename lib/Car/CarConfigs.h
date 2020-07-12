@@ -11,10 +11,10 @@ namespace PortConfigs {
 }
 
 namespace OtherConfigs {
-    const String infras_names[] = { "Left", "Center", "Right" };
+    const char *const infras_names[] = { "Left", "Center", "Right" };
+    const unsigned short int delay_front_curve = 250;
     const byte normal_speed = 25;
     const byte spin_speed = 40;
-    const unsigned short int delay_front_curve = 250;
 }
 
 #endif

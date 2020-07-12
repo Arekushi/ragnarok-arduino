@@ -7,14 +7,13 @@
 #include <TimeToCurvedFront.h>
 
 void CurvedFrontRight::enter(Car data) {
-    if(!isSetup) setup();
+    base::enter(data);
 
     Singleton<TimeToCurvedFront>::getInstance()->start = millis();
-    Serial.println(F("Entrando em CurvedFrontRight"));
 }
 
 void CurvedFrontRight::exit(Car data) {
-    Serial.println(F("Saindo de CurvedFrontRight"));
+    base::exit(data);
 }
 
 void CurvedFrontRight::setActions() { 

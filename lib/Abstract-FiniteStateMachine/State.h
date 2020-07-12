@@ -15,23 +15,27 @@ namespace AbstractFiniteStateMachine {
         friend class Singleton<T>;
 
         protected:
-            Action<T> **actions;
-            Transition<T> **transitions;
+            using base = State;
+            bool isSetup;
+
+            const char *name;
             byte actions_size;
             byte transitions_size;
-            bool isSetup = false;
+            Action<T> **actions;
+            Transition<T> **transitions;
 
         public:
-            State() {
-                actions = new Action<T>*[20];
-                transitions = new Transition<T>*[20];
+            State(const char *name) : name(name) {
+                isSetup = false;
                 actions_size = 0;
                 transitions_size = 0;
+                actions = new Action<T>*[20];
+                transitions = new Transition<T>*[20];
             }
 
             void addAction(Action<T> *action) {
                 actions[actions_size] = action;
-                actions_size++;;
+                actions_size++;
             }
 
             void addTransition(Transition<T> *transition) {
@@ -61,16 +65,25 @@ namespace AbstractFiniteStateMachine {
                 checkTransitions(machine);
             }
 
-            virtual void enter(T data) = 0;
-            virtual void exit(T data) = 0;
-            virtual void setActions() = 0;
-            virtual void setTransitions() = 0;
+            virtual void enter(T data) {
+                if(!isSetup) setup();
+                //Serial.print(F("Entrando em: "));
+                //Serial.println(name);
+            }
+
+            virtual void exit(T data) {
+                //Serial.print(F("Saindo de: "));
+                //Serial.println(name);
+            }
 
             virtual void setup() {
                 isSetup = true;
                 setTransitions();
                 setActions();
             }
+
+            virtual void setActions() = 0;
+            virtual void setTransitions() = 0;
     };
 }
 

@@ -1,5 +1,4 @@
 #include <Car.h>
-#include <CarConfigs.h>
 #include <Arduino.h>
 #include <StateMachine.h>
 #include <State.h>
@@ -7,15 +6,9 @@
 Car::Car(State<Car> *state) {
     setupInfraReds();
     setupEngines();
-    setupUltrasonic();
 
+    ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
     machine = new StateMachine<Car>(*this, state);
-}
-
-void Car::showInfraReds() {
-    for(byte i = 0; i < 3; i++) {
-        infras[i]->show();
-    }
 }
 
 void Car::goForward(byte POWER) {

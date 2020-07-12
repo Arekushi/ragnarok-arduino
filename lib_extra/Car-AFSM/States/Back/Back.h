@@ -10,6 +10,7 @@ class Car;
 class Back : public State<Car> {
 
     public:
+        Back() : base::State("Back") {}
         void enter(Car data) override;
         void exit(Car data) override;
         void setActions() override;
