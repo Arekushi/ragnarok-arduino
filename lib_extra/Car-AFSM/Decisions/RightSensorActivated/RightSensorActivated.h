@@ -3,8 +3,6 @@
 
 #include <Decision.h>
 
-using namespace AbstractFiniteStateMachine;
-
 class Car;
 
 class RightSensorActivated : public Decision<Car> {

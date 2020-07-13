@@ -1,14 +1,18 @@
 #include <Car.h>
 #include <Arduino.h>
-#include <StateMachine.h>
-#include <State.h>
 
-Car::Car(State<Car> *state) {
-    setupInfraReds();
-    setupEngines();
+Car::Car() {
+    for(byte i = 0; i < 3; i++) {
+        infras[i] = new InfraRed(infras_names[i], infras_ports[i]);
+    }
+
+    for(byte i = 0; i < 2; i++) {
+        left_engines[i] = new Engine(left_engines_ports[i]);
+        right_engines[i] = new Engine(right_engines_ports[i]);
+    }
 
     ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
-    machine = new StateMachine<Car>(*this, state);
+    machine = new StateMachine<Car>(*this);
 }
 
 void Car::goForward(byte POWER) {

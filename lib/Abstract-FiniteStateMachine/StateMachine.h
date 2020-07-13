@@ -1,51 +1,48 @@
 #ifndef Abstract_StateMachine_h
 #define Abstract_StateMachine_h
 
-namespace AbstractFiniteStateMachine {
+template <class T>
+class State;
 
-    template <class T>
-    class State;
+template<class T>
+class StateMachine {
 
-    template<class T>
-    class StateMachine {
+    private:
+        State<T> *currentState;
+        State<T> *previousState;
 
-        private:
-            State<T> *currentState;
-            State<T> *previousState;
+    public:
+        T &data;
 
-        public:
-            T &data;
+        StateMachine(T &data) : data(data) {}
 
-            StateMachine(T &data, State<T> *state) : data(data) {
-                this->currentState = state;
-                this->currentState->enter(this->data);
-            }
+        State<T> *getCurrentState() {
+            return currentState;
+        }
 
-            State<T> *getCurrentState() {
-                return currentState;
-            }
+        State<T> *getPreviousState() {
+            return previousState;
+        }
 
-            State<T> *getPreviousState() {
-                return previousState;
-            }
-
-            void setCurrentState(State<T> *newState) {
+        void setCurrentState(State<T> *newState) {
+            /*if(!currentState) {
                 currentState->exit(data);
-                previousState = currentState;
-                currentState = newState;
-                currentState->enter(data);
-            }
+            }*/
+            
+            //previousState = currentState;
+            //currentState = newState;
+            //currentState->enter(data);
+        }
 
-            void executeMachine() {
-                currentState->executeState(*this);
-            }
+        void executeMachine() {
+            currentState->executeState(*this);
+        }
 
-            void transitionNextState(State<T> *nextState) {
-                if(nextState != nullptr) {
-                    setCurrentState(nextState);
-                }
+        void transitionNextState(State<T> *nextState) {
+            if(nextState != nullptr) {
+                setCurrentState(nextState);
             }
-    };
-}
+        }
+};
 
 #endif

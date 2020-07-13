@@ -3,8 +3,6 @@
 
 #include <State.h>
 
-using namespace AbstractFiniteStateMachine;
-
 class Car;
 
 class Forward : public State<Car> {

@@ -4,87 +4,85 @@
 #include <Arduino.h>
 #include <Action.h>
 #include <Transition.h>
+#include <Decision.h>
 #include <StateMachine.h>
 #include <Singleton.h>
 
-namespace AbstractFiniteStateMachine {
+template <class T>
+class State {
 
-    template <class T>
-    class State {
+    friend class Singleton<T>;
 
-        friend class Singleton<T>;
+    protected:
+        using base = State;
+        bool isSetup;
 
-        protected:
-            using base = State;
-            bool isSetup;
+        const char *name;
+        byte actions_size;
+        byte transitions_size;
+        Action<T> **actions;
+        Transition<T> **transitions;
 
-            const char *name;
-            byte actions_size;
-            byte transitions_size;
-            Action<T> **actions;
-            Transition<T> **transitions;
+    public:
+        State(const char *name) : name(name) {
+            isSetup = false;
+            actions_size = 0;
+            transitions_size = 0;
+            actions = new Action<T>*[20];
+            transitions = new Transition<T>*[20];
+        }
 
-        public:
-            State(const char *name) : name(name) {
-                isSetup = false;
-                actions_size = 0;
-                transitions_size = 0;
-                actions = new Action<T>*[20];
-                transitions = new Transition<T>*[20];
+        void addAction(Action<T> *action) {
+            actions[actions_size] = action;
+            actions_size++;
+        }
+
+        void addTransition(Transition<T> *transition) {
+            transitions[transitions_size] = transition;
+            transitions_size++;
+        }
+
+        void executeAction(T &data) {
+            for(byte i = 0; i < actions_size; i++) {
+                actions[i]->execute(data);
             }
+        }
 
-            void addAction(Action<T> *action) {
-                actions[actions_size] = action;
-                actions_size++;
-            }
+        void checkTransitions(StateMachine<T> &machine) {
+            for(byte i = 0; i < transitions_size; i++) {
+                if(transitions[i]->getDecision()->decision(machine.data)) {
+                    machine.transitionNextState(transitions[i]->getTrueState());
 
-            void addTransition(Transition<T> *transition) {
-                transitions[transitions_size] = transition;
-                transitions_size++;
-            }
-
-            void executeAction(T &data) {
-                for(byte i = 0; i < actions_size; i++) {
-                    actions[i]->execute(data);
+                } else {
+                    machine.transitionNextState(transitions[i]->getFalseState());
                 }
             }
+        }
 
-            void checkTransitions(StateMachine<T> &machine) {
-                for(byte i = 0; i < transitions_size; i++) {
-                    if(transitions[i]->getDecision()->decision(machine.data)) {
-                        machine.transitionNextState(transitions[i]->getTrueState());
+        void executeState(StateMachine<T> &machine) {
+            executeAction(machine.data);
+            checkTransitions(machine);
+        }
 
-                    } else {
-                        machine.transitionNextState(transitions[i]->getFalseState());
-                    }
-                }
-            }
+        virtual void enter(T data) {
+            if(!isSetup) setup();
+            //Serial.print(F("Entrando em: "));
+            //Serial.println(name);
+        }
 
-            void executeState(StateMachine<T> &machine) {
-                executeAction(machine.data);
-                checkTransitions(machine);
-            }
+        virtual void exit(T data) {
+            //Serial.print(F("Saindo de: "));
+            //Serial.println(name);
+        }
 
-            virtual void enter(T data) {
-                if(!isSetup) setup();
-                //Serial.print(F("Entrando em: "));
-                //Serial.println(name);
-            }
+        virtual void setup() {
+            isSetup = true;
+            setTransitions();
+            setActions();
+        }
 
-            virtual void exit(T data) {
-                //Serial.print(F("Saindo de: "));
-                //Serial.println(name);
-            }
-
-            virtual void setup() {
-                isSetup = true;
-                setTransitions();
-                setActions();
-            }
-
-            virtual void setActions() = 0;
-            virtual void setTransitions() = 0;
-    };
-}
+        virtual void setActions() = 0;
+        virtual void setTransitions() = 0;
+};
 
 #endif

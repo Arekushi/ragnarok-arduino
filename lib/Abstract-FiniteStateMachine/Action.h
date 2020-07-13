@@ -3,16 +3,13 @@
 
 #include <Singleton.h>
 
-namespace AbstractFiniteStateMachine {
+template <class T>
+class Action {
 
-    template <class T>
-    class Action {
+    friend class Singleton<T>;
 
-        friend class Singleton<T>;
-
-        public:
-            virtual void execute(T data);
-    };
-}
+    public:
+        virtual void execute(T data);
+};
 
 #endif
