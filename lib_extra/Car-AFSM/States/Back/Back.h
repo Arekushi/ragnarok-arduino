@@ -3,17 +3,16 @@
 
 #include <State.h>
 
-using namespace AbstractFiniteStateMachine;
-
 class Car;
 
 class Back : public State<Car> {
 
     public:
-        Back();
+        Back() : base::State("Back") {}
         void enter(Car data) override;
         void exit(Car data) override;
-        void setup() override;
+        void setActions() override;
+        void setTransitions() override;
 };
 
 #endif

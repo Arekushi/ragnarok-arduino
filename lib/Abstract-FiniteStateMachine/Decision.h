@@ -3,16 +3,13 @@
 
 #include <Singleton.h>
 
-namespace AbstractFiniteStateMachine {
+template <class T>
+class Decision {
 
-    template <class T>
-    class Decision {
+    friend class Singleton<T>;
 
-        friend class Singleton<T>;
-
-        public:
-            virtual bool decision(T data);
-    };
-}
+    public:
+        virtual bool decision(T data);
+};
 
 #endif

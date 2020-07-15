@@ -3,8 +3,6 @@
 
 #include <Action.h>
 
-using namespace AbstractFiniteStateMachine;
-
 class Car;
 
 class Stop : public Action<Car> {

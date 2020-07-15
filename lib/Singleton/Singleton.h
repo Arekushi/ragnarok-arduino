@@ -12,7 +12,7 @@ class Singleton {
 
     public:
         static T *getInstance() {
-            if(!instance) {
+            if(instance == nullptr) {
                 instance = new T;
             }
 
@@ -21,6 +21,6 @@ class Singleton {
 };
 
 template<class T>
-T *Singleton<T>::instance;
+T *Singleton<T>::instance = nullptr;
 
 #endif

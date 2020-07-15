@@ -2,29 +2,33 @@
 #include <Arduino.h>
 #include <Car.h>
 
+#include <Forward.h>
 #include <Lefting.h>
 #include <ReadInfra.h>
-#include <Forward.h>
+#include <RightSensorActivated.h>
 #include <CenterSensorActivated.h>
 
-AligningLeft::AligningLeft() {
-    setup();
-}
-
 void AligningLeft::enter(Car data) {
-    Serial.println(F("Entrando em AligningLeft"));
+    base::enter(data);
 }
 
 void AligningLeft::exit(Car data) {
-    Serial.println(F("Saindo de AligningLeft"));
+    base::exit(data);
 }
 
-void AligningLeft::setup() {
+void AligningLeft::setActions() {
     addAction(Singleton<Lefting>::getInstance());
     addAction(Singleton<ReadInfra>::getInstance());
+}
+
+void AligningLeft::setTransitions() {
+    addTransition(new Transition<Car>(
+        Singleton<CenterSensorActivated>::getInstance(), 
+        Singleton<Forward>::getInstance(),
+        nullptr));
 
     /*addTransition(new Transition<Car>(
-        Singleton<CenterSensorActivated>::getInstance(), 
+        Singleton<RightSensorActivated>::getInstance(), 
         Singleton<Forward>::getInstance(),
         nullptr));*/
 }

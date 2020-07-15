@@ -2,18 +2,16 @@
 #include <Arduino.h>
 #include <Car.h>
 
-Back::Back() {
-    setup();
-}
-
 void Back::enter(Car data) {
-    Serial.println(F("Entrando em Back"));
+    base::enter(data);
 }
 
 void Back::exit(Car data) {
-    Serial.println(F("Saindo de Back"));
+    base::exit(data);
 }
 
-void Back::setup() {
-    
+void Back::setActions() { 
+}
+
+void Back::setTransitions() {
 }

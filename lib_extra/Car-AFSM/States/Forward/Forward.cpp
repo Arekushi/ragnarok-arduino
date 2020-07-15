@@ -2,34 +2,39 @@
 #include <Arduino.h>
 #include <Car.h>
 
-#include <Walk.h>
-#include <ReadInfra.h>
 #include <AligningLeft.h>
 #include <AligningRight.h>
+#include <CurvedFrontLeft.h>
+#include <CurvedFrontRight.h>
+#include <Stationary.h>
+
+#include <Back.h>
+#include <Walk.h>
+#include <ReadInfra.h>
 #include <LeftSensorActivated.h>
 #include <RightSensorActivated.h>
 #include <LeftCenterSensorsActivated.h>
 #include <RightCenterSensorsActivated.h>
+#include <CenterSensorActivated.h>
+#include <UltrasonicSawObstacle.h>
 
-Forward::Forward() {
-    setup();
-}
-
-void Forward::enter(Car data) {
-    Serial.println(F("Entrando em Forward"));
+void Forward::enter(Car data) {    
+    base::enter(data);
 }
 
 void Forward::exit(Car data) {
     data.stop();
-    delay(500);
+    delay(250);
 
-    Serial.println(F("Saindo de Forward"));
+    base::exit(data);
 }
 
-void Forward::setup() {
+void Forward::setActions() {
     addAction(Singleton<Walk>::getInstance());
     addAction(Singleton<ReadInfra>::getInstance());
+}
 
+void Forward::setTransitions() {
     // [Primario]
     addTransition(new Transition<Car>(
         Singleton<LeftSensorActivated>::getInstance(), 
@@ -44,11 +49,17 @@ void Forward::setup() {
     // [Secundario]
     addTransition(new Transition<Car>(
         Singleton<LeftCenterSensorsActivated>::getInstance(),
-        Singleton<AligningLeft>::getInstance(),
+        Singleton<CurvedFrontLeft>::getInstance(),
         nullptr));
 
     addTransition(new Transition<Car>(
         Singleton<RightCenterSensorsActivated>::getInstance(),
-        Singleton<AligningRight>::getInstance(),
+        Singleton<CurvedFrontRight>::getInstance(),
+        nullptr));
+
+    // [Ultrasonic]
+    addTransition(new Transition<Car>(
+        Singleton<UltrasonicSawObstacle>::getInstance(),
+        Singleton<Stationary>::getInstance(),
         nullptr));
 }

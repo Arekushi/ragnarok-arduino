@@ -3,5 +3,6 @@
 #include <Car.h>
 
 void Stop::execute(Car data) {
-    Serial.println(F("LEFTING"));
+    data.stop();
+    //Serial.println(F("LEFTING"));
 }

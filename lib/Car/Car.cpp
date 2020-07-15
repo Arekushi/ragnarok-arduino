@@ -1,24 +1,18 @@
 #include <Car.h>
-#include <CarConfigs.h>
 #include <Arduino.h>
-#include <StateMachine.h>
-#include <State.h>
-#include <Ultra.h>
 
-Car::Car(State<Car> *startState) {
-    setupInfraReds();
-    setupEngines();
-    setupUltra();
-
-    machine = new StateMachine<Car>(*this, startState);
-}
-
-void Car::showSensors() {
+Car::Car(State<Car> *initState) {
     for(byte i = 0; i < 3; i++) {
-        infras[i]->show();
+        infras[i] = new InfraRed(infras_names[i], infras_ports[i]);
     }
 
-    //ultra->show();
+    for(byte i = 0; i < 2; i++) {
+        left_engines[i] = new Engine(left_engines_ports[i]);
+        right_engines[i] = new Engine(right_engines_ports[i]);
+    }
+
+    ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
+    machine = new StateMachine<Car>(*this, initState);
 }
 
 void Car::goForward(byte POWER) {
