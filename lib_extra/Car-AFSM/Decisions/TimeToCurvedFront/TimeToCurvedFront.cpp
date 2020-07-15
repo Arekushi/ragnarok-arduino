@@ -3,5 +3,5 @@
 
 bool TimeToCurvedFront::decision(Car data) {
     current = millis();
-    return current - start > delay_front_curve;
+    return (current - start > delay_front_curve);
 }

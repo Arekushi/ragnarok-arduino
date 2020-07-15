@@ -21,7 +21,7 @@ class Car {
         Ultrasonic *ultrasonic;
         StateMachine<Car> *machine;
 
-        Car();
+        Car(State<Car> *initState);
         void goForward(byte POWER);
         void goBack(byte POWER);
         void lefting(byte POWER);

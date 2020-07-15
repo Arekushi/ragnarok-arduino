@@ -18,4 +18,5 @@ void Stationary::setActions() {
 }
 
 void Stationary::setTransitions() {
+    
 }

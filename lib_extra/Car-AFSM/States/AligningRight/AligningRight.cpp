@@ -6,6 +6,7 @@
 #include <Righting.h>
 #include <ReadInfra.h>
 #include <CenterSensorActivated.h>
+#include <LeftSensorActivated.h>
 
 void AligningRight::enter(Car data) {
     base::enter(data);
@@ -25,4 +26,9 @@ void AligningRight::setTransitions() {
         Singleton<CenterSensorActivated>::getInstance(), 
         Singleton<Forward>::getInstance(),
         nullptr));
+
+    /*addTransition(new Transition<Car>(
+        Singleton<LeftSensorActivated>::getInstance(), 
+        Singleton<Forward>::getInstance(),
+        nullptr));*/
 }

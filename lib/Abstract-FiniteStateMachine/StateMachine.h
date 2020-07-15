@@ -14,7 +14,10 @@ class StateMachine {
     public:
         T &data;
 
-        StateMachine(T &data) : data(data) {}
+        StateMachine(T &data, State<T> *initState) : data(data) {
+            currentState = initState;
+            currentState->enter(this->data);
+        }
 
         State<T> *getCurrentState() {
             return currentState;
@@ -25,13 +28,10 @@ class StateMachine {
         }
 
         void setCurrentState(State<T> *newState) {
-            /*if(!currentState) {
-                currentState->exit(data);
-            }*/
-            
-            //previousState = currentState;
-            //currentState = newState;
-            //currentState->enter(data);
+            currentState->exit(data);
+            previousState = currentState;
+            currentState = newState;
+            currentState->enter(data);
         }
 
         void executeMachine() {

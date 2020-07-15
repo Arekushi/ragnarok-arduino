@@ -2,14 +2,13 @@
 #include <Forward.h>
 #include <Car.h>
 
-Car car;
+Car *car;
 
 void setup() {
-    //Singleton<Forward>::getInstance();
-    //car.machine->setCurrentState();
-    Serial.begin(9600);
+    car = new Car(Singleton<Forward>::getInstance());
+    //Serial.begin(9600);
 }
 
 void loop() {
-    //car.machine->executeMachine();
+    car->machine->executeMachine();
 }

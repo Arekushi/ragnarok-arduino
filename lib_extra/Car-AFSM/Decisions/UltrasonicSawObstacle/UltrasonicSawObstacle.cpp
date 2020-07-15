@@ -2,5 +2,5 @@
 #include <Car.h>
 
 bool UltrasonicSawObstacle::decision(Car data) {
-    return data.ultrasonic->read() <= 10;
+    return data.ultrasonic->read() <= 5;
 }

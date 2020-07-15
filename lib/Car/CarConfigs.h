@@ -12,7 +12,7 @@ namespace PortConfigs {
 
 namespace OtherConfigs {
     const char *const infras_names[] = { "Left", "Center", "Right" };
-    const unsigned short int delay_front_curve = 250;
+    const unsigned short int delay_front_curve = 300;
     const byte normal_speed = 25;
     const byte spin_speed = 40;
 }

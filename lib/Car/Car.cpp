@@ -1,7 +1,7 @@
 #include <Car.h>
 #include <Arduino.h>
 
-Car::Car() {
+Car::Car(State<Car> *initState) {
     for(byte i = 0; i < 3; i++) {
         infras[i] = new InfraRed(infras_names[i], infras_ports[i]);
     }
@@ -12,7 +12,7 @@ Car::Car() {
     }
 
     ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
-    machine = new StateMachine<Car>(*this);
+    machine = new StateMachine<Car>(*this, initState);
 }
 
 void Car::goForward(byte POWER) {
