@@ -7,6 +7,7 @@
 #include <Decision.h>
 #include <StateMachine.h>
 #include <Singleton.h>
+#include <ArrayList.h>
 
 template <class T>
 class State {
@@ -18,43 +19,41 @@ class State {
         bool isSetup;
 
         const char *name;
-        byte actions_size;
-        byte transitions_size;
-        Action<T> **actions;
-        Transition<T> **transitions;
+        ArrayList<Action<T>> *actions;
+        ArrayList<Transition<T>> *transitions;
 
     public:
         State(const char *name) : name(name) {
             isSetup = false;
-            actions_size = 0;
-            transitions_size = 0;
-            actions = new Action<T>*[20];
-            transitions = new Transition<T>*[20];
+            actions = new ArrayList<Action<T>>();
+            transitions = new ArrayList<Transition<T>>();
         }
 
         void addAction(Action<T> *action) {
-            actions[actions_size] = action;
-            actions_size++;
+            actions->addElement(action);
         }
 
         void addTransition(Transition<T> *transition) {
-            transitions[transitions_size] = transition;
-            transitions_size++;
+            transitions->addElement(transition);
         }
 
         void executeAction(T &data) {
-            for(byte i = 0; i < actions_size; i++) {
-                actions[i]->execute(data);
+            Action<T> **array = actions->getArray();
+
+            for(byte i = 0; i < actions->getLength(); i++) {
+                array[i]->execute(data);
             }
         }
 
         void checkTransitions(StateMachine<T> &machine) {
-            for(byte i = 0; i < transitions_size; i++) {
-                if(transitions[i]->getDecision()->decision(machine.data)) {
-                    machine.transitionNextState(transitions[i]->getTrueState());
+            Transition<T> **array = transitions->getArray();
+
+            for(byte i = 0; i < transitions->getLength(); i++) {
+                if(array[i]->getDecision()->decision(machine.data)) {
+                    machine.transitionNextState(array[i]->getTrueState());
 
                 } else {
-                    machine.transitionNextState(transitions[i]->getFalseState());
+                    machine.transitionNextState(array[i]->getFalseState());
                 }
             }
         }
