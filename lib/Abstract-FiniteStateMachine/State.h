@@ -34,7 +34,7 @@ class State {
         }
 
         void addTransition(Transition<T> *transition) {
-            transitions->addElement(transitions);
+            transitions->addElement(transition);
         }
 
         void executeAction(T &data) {
@@ -53,7 +53,7 @@ class State {
                     machine.transitionNextState(array[i]->getTrueState());
 
                 } else {
-                    machine.transitionNextState(tranarrayitions[i]->getFalseState());
+                    machine.transitionNextState(array[i]->getFalseState());
                 }
             }
         }
