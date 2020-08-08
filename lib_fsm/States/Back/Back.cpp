@@ -7,7 +7,6 @@ void Back::enter(Car data) {
 }
 
 void Back::exit(Car data) {
-    base::exit(data);
 }
 
 void Back::setActions() { 

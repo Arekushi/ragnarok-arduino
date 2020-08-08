@@ -1,34 +1,33 @@
-#include <AligningRight.h>
+#include <AligningLeft.h>
 #include <Arduino.h>
 #include <Car.h>
 
 #include <Forward.h>
-#include <Righting.h>
+#include <Lefting.h>
 #include <ReadInfra.h>
+#include <RightSensorActivated.h>
 #include <CenterSensorActivated.h>
-#include <LeftSensorActivated.h>
 
-void AligningRight::enter(Car data) {
+void AligningLeft::enter(Car data) {
     base::enter(data);
 }
 
-void AligningRight::exit(Car data) {
-    base::exit(data);
+void AligningLeft::exit(Car data) {
 }
 
-void AligningRight::setActions() {
-    addAction(Singleton<Righting>::getInstance());
+void AligningLeft::setActions() {
+    addAction(Singleton<Lefting>::getInstance());
     addAction(Singleton<ReadInfra>::getInstance());
 }
 
-void AligningRight::setTransitions() {
+void AligningLeft::setTransitions() {
     addTransition(new Transition<Car>(
         Singleton<CenterSensorActivated>::getInstance(), 
         Singleton<Forward>::getInstance(),
         nullptr));
 
     /*addTransition(new Transition<Car>(
-        Singleton<LeftSensorActivated>::getInstance(), 
+        Singleton<RightSensorActivated>::getInstance(), 
         Singleton<Forward>::getInstance(),
         nullptr));*/
 }

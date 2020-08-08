@@ -13,7 +13,6 @@ void CurvedFrontLeft::enter(Car data) {
 }
 
 void CurvedFrontLeft::exit(Car data) {
-    base::exit(data);
 }
 
 void CurvedFrontLeft::setActions() {

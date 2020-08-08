@@ -10,7 +10,6 @@ void Stationary::enter(Car data) {
 }
 
 void Stationary::exit(Car data) {
-    base::exit(data);
 }
 
 void Stationary::setActions() {

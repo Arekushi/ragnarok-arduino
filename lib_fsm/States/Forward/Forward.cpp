@@ -25,8 +25,6 @@ void Forward::enter(Car data) {
 void Forward::exit(Car data) {
     data.stop();
     delay(250);
-
-    base::exit(data);
 }
 
 void Forward::setActions() {
