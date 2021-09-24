@@ -4,10 +4,17 @@
 Car::Car(State<Car> *initState) {
     initInfraReds();
     initEngines();
+    initUltrasonic();
 
-    ultrasonic = new Ultrasonic(ULTRA_PORTS[0], ULTRA_PORTS[1]);
-    bluetooth = new Bluetooth();
     machine = new StateMachine<Car>(*this, initState);
+}
+
+Car::Car(InputHandler<Car> *input, GenericCharacteristicCallbacks<Car> *callbacks) {
+    initInfraReds();
+    initEngines();
+    initUltrasonic();
+
+    bluetooth = new Bluetooth<Car>(*this, input, callbacks);
 }
 
 void Car::goForward() {
@@ -50,6 +57,10 @@ void Car::initInfraReds() {
     for(byte i = 0; i < 3; i++) {
         m_infras[i] = new InfraRed(INFRA_NAMES[i], INFRAS_PORTS[i]);
     }
+}
+
+void Car::initUltrasonic() {
+    ultrasonic = new Ultrasonic(ULTRA_PORTS[0], ULTRA_PORTS[1]);
 }
 
 InfraRed *Car::infras(InfraRedName name) {

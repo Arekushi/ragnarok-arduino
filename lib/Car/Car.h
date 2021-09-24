@@ -20,9 +20,11 @@ class Car {
     public:
         Ultrasonic *ultrasonic;
         StateMachine<Car> *machine;
-        Bluetooth *bluetooth;
+        Bluetooth<Car> *bluetooth;
 
+        Car(InputHandler<Car> *input, GenericCharacteristicCallbacks<Car> *callbacks);
         Car(State<Car> *initState);
+        
         void goForward();
         void goBack();
         void lefting();
@@ -43,6 +45,7 @@ class Car {
 
         void initInfraReds();
         void initEngines();
+        void initUltrasonic();
 };
 
 #endif
