@@ -2,55 +2,67 @@
 #include <Arduino.h>
 
 Car::Car(State<Car> *initState) {
-    for(byte i = 0; i < 3; i++) {
-        infras[i] = new InfraRed(infras_names[i], infras_ports[i]);
-    }
-
-    for(byte i = 0; i < 2; i++) {
-        left_engines[i] = new Engine(left_engines_ports[i]);
-        right_engines[i] = new Engine(right_engines_ports[i]);
-    }
+    initInfraReds();
+    initEngines();
 
     ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
     machine = new StateMachine<Car>(*this, initState);
 }
 
-void Car::goForward(byte POWER) {
-    left_engines[0]->write(LOW);
-    left_engines[1]->write(POWER);
-
-    right_engines[0]->write(LOW);
-    right_engines[1]->write(POWER);
+void Car::goForward() {
+    engines(EngineName::LEFT)->forward();
+    engines(EngineName::RIGHT)->forward();
 }
 
-void Car::goBack(byte POWER) {
-    left_engines[0]->write(POWER);
-    left_engines[1]->write(LOW);
-
-    right_engines[0]->write(POWER);
-    right_engines[1]->write(LOW);
+void Car::goBack() {
+    engines(EngineName::LEFT)->backward();
+    engines(EngineName::RIGHT)->backward();
 }
 
-void Car::lefting(byte POWER) {
-    left_engines[0]->write(LOW);
-    left_engines[1]->write(POWER);
-
-    right_engines[0]->write(POWER);
-    right_engines[1]->write(LOW);
+void Car::lefting() {
+    engines(EngineName::LEFT)->backward();
+    engines(EngineName::RIGHT)->forward();
 }
 
-void Car::righting(byte POWER) {
-    left_engines[0]->write(POWER);
-    left_engines[1]->write(LOW);
-
-    right_engines[0]->write(LOW);
-    right_engines[1]->write(POWER);
+void Car::righting() {
+    engines(EngineName::LEFT)->forward();
+    engines(EngineName::RIGHT)->backward();
 }
 
 void Car::stop() {
-    left_engines[0]->write(HIGH);
-    left_engines[1]->write(HIGH);
+    engines(EngineName::LEFT)->stop();
+    engines(EngineName::RIGHT)->stop();
+}
 
-    right_engines[0]->write(HIGH);
-    right_engines[1]->write(HIGH);
+void Car::changePotency(byte powerLeft, byte powerRight) {
+    engines(EngineName::LEFT)->changePotency(powerLeft);
+    engines(EngineName::RIGHT)->changePotency(powerRight);
+}
+
+void Car::initEngines() {
+    // for(byte i = 0; i < 2; i++) {
+    //     _engines[i] = new Engine(engines_ports[i], pwm_channels[i]);
+    // }
+}
+
+void Car::initInfraReds() {
+    for(byte i = 0; i < 3; i++) {
+        _infras[i] = new InfraRed(infras_names[i], infras_ports[i]);
+    }
+}
+
+InfraRed *Car::infras(InfraRedName name) {
+    return _infras[(int) name];
+}
+
+Engine *Car::engines(EngineName name) {
+    return _engines[(int) name];
+}
+
+InfraRed **Car::infras() {
+    return _infras;
+}
+
+Engine **Car::engines() {
+    return _engines;
 }

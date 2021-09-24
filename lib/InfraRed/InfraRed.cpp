@@ -21,7 +21,7 @@ void InfraRed::setup() {
 }
 
 void InfraRed::show() {
-    //Serial.print(name);
-    //Serial.print(F(" : "));
-    //Serial.println(value);
+    Serial.print(name);
+    Serial.print(F(" : "));
+    Serial.println(value);
 }

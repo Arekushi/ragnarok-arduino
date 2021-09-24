@@ -2,16 +2,23 @@
 #define Engine_h
 
 #include <Arduino.h>
+#include <EngineConfigs.h>
+
+using namespace EngineConfigs;
 
 class Engine {
     
     private:
-        byte port;
+        byte *port;
+        byte pwm;
 
     public:
-        Engine(byte port);
+        Engine(byte *port, byte pwm);
         void setup();
-        void write(byte power);
+        void forward();
+        void backward();
+        void stop();
+        void changePotency(byte power);
 };
 
 #endif

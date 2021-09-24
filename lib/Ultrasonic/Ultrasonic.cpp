@@ -14,9 +14,9 @@ void Ultrasonic::setup() {
 }
 
 void Ultrasonic::show() {
-    //Serial.print(F("Distance: "));
-    //Serial.print(read());
-    //Serial.println(F(" cm."));
+    Serial.print(F("Distance: "));
+    Serial.print(read());
+    Serial.println(F(" cm."));
 }
 
 unsigned int Ultrasonic::read() {
