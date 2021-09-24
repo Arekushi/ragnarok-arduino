@@ -9,11 +9,11 @@ using namespace EngineConfigs;
 class Engine {
     
     private:
-        byte *port;
+        const byte *port;
         byte pwm;
 
     public:
-        Engine(byte *port, byte pwm);
+        Engine(const byte *port, byte pwm);
         void setup();
         void forward();
         void backward();

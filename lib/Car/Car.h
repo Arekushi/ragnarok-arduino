@@ -10,6 +10,7 @@
 #include <State.h>
 #include <InfraRedName.h>
 #include <EngineName.h>
+#include <Bluetooth.h>
 
 using namespace PortConfigs;
 using namespace OtherConfigs;
@@ -19,6 +20,7 @@ class Car {
     public:
         Ultrasonic *ultrasonic;
         StateMachine<Car> *machine;
+        Bluetooth *bluetooth;
 
         Car(State<Car> *initState);
         void goForward();
@@ -27,7 +29,7 @@ class Car {
         void righting();
         void stop();
 
-        void changePotency(byte powerLeft = 0, byte powerRight = 0);
+        void changePotency(byte powerLeft, byte powerRight);
 
         InfraRed **infras();
         Engine **engines();
@@ -36,8 +38,8 @@ class Car {
         Engine *engines(EngineName name);
     
     private:
-        InfraRed *_infras[3];
-        Engine *_engines[2];
+        InfraRed *m_infras[3];
+        Engine *m_engines[2];
 
         void initInfraReds();
         void initEngines();

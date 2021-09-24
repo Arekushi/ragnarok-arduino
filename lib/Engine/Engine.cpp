@@ -1,9 +1,11 @@
 #include <Engine.h>
 #include <Arduino.h>
 
-Engine::Engine(byte *port, byte pwm) {
+Engine::Engine(const byte *port, byte pwm) {
     this->port = port;
     this->pwm = pwm;
+
+    setup();
 }
 
 void Engine::setup() {

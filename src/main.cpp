@@ -5,6 +5,7 @@
 Car *car;
 
 void setup() {
+    Serial.begin(115200);
     car = new Car(Singleton<Forward>::getInstance());
 }
 

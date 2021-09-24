@@ -5,7 +5,8 @@ Car::Car(State<Car> *initState) {
     initInfraReds();
     initEngines();
 
-    ultrasonic = new Ultrasonic(ultra_ports[0], ultra_ports[1]);
+    ultrasonic = new Ultrasonic(ULTRA_PORTS[0], ULTRA_PORTS[1]);
+    bluetooth = new Bluetooth();
     machine = new StateMachine<Car>(*this, initState);
 }
 
@@ -40,29 +41,29 @@ void Car::changePotency(byte powerLeft, byte powerRight) {
 }
 
 void Car::initEngines() {
-    // for(byte i = 0; i < 2; i++) {
-    //     _engines[i] = new Engine(engines_ports[i], pwm_channels[i]);
-    // }
+    for(byte i = 0; i < 2; i++) {
+        m_engines[i] = new Engine(ENGINES_PORTS[i], PWM_CHANNELS[i]);
+    }
 }
 
 void Car::initInfraReds() {
     for(byte i = 0; i < 3; i++) {
-        _infras[i] = new InfraRed(infras_names[i], infras_ports[i]);
+        m_infras[i] = new InfraRed(INFRA_NAMES[i], INFRAS_PORTS[i]);
     }
 }
 
 InfraRed *Car::infras(InfraRedName name) {
-    return _infras[(int) name];
+    return m_infras[(int) name];
 }
 
 Engine *Car::engines(EngineName name) {
-    return _engines[(int) name];
+    return m_engines[(int) name];
 }
 
 InfraRed **Car::infras() {
-    return _infras;
+    return m_infras;
 }
 
 Engine **Car::engines() {
-    return _engines;
+    return m_engines;
 }
