@@ -9,12 +9,12 @@ Car::Car(State<Car> *initState) {
     machine = new StateMachine<Car>(*this, initState);
 }
 
-Car::Car(InputHandler<Car> *input, GenericCharacteristicCallbacks<Car> *callbacks) {
+Car::Car(GenericCharacteristicCallbacks<Car> *callbacks) {
     initInfraReds();
     initEngines();
     initUltrasonic();
 
-    bluetooth = new Bluetooth<Car>(*this, input, callbacks);
+    bluetooth = new Bluetooth<Car>(*this, callbacks);
 }
 
 void Car::goForward() {

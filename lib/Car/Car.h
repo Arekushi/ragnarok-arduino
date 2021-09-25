@@ -22,7 +22,7 @@ class Car {
         StateMachine<Car> *machine;
         Bluetooth<Car> *bluetooth;
 
-        Car(InputHandler<Car> *input, GenericCharacteristicCallbacks<Car> *callbacks);
+        Car(GenericCharacteristicCallbacks<Car> *callbacks);
         Car(State<Car> *initState);
         
         void goForward();

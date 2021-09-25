@@ -4,11 +4,8 @@
 #include <BLEDevice.h>
 #include <Singleton.h>
 
-template<class T>
+template <class T>
 class Bluetooth;
-
-template<class T>
-class InputHandler;
 
 template <class T>
 class GenericCharacteristicCallbacks: public BLECharacteristicCallbacks {
@@ -18,10 +15,7 @@ class GenericCharacteristicCallbacks: public BLECharacteristicCallbacks {
      public:
           Bluetooth<T> *bluetooth;
 
-          void setup(Bluetooth<T> *bluetooth) {
-               this->bluetooth = bluetooth;
-          }
-
+          virtual void setup(Bluetooth<T> *bluetooth) = 0;
           virtual void onWrite(BLECharacteristic *characteristic) = 0;
 };
 
