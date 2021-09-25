@@ -1,21 +1,16 @@
 #include <Arduino.h>
 #include <Forward.h>
-#include <CarCharacteristicCallbacks.h>
+#include <RXCallbacksCar.h>
 #include <Car.h>
 
 Car *car;
 
 void setup() {
     Serial.begin(115200);
-
-    // State Machine
-    // car = new Car(Singleton<Forward>::getInstance());
-
-    // Remote Control
-    car = new Car(Singleton<CarCharacteristicCallbacks>::getInstance());
+    car = new Car(Singleton<Forward>::getInstance());
+    car->startBluetooth(Singleton<RXCallbacksCar>::getInstance());
 }
 
 void loop() {
-    // State Machine
-    // car->machine->executeMachine();
+    car->machine->executeMachine();
 }

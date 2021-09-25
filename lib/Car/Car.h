@@ -22,7 +22,6 @@ class Car {
         StateMachine<Car> *machine;
         Bluetooth<Car> *bluetooth;
 
-        Car(GenericCharacteristicCallbacks<Car> *callbacks);
         Car(State<Car> *initState);
         
         void goForward();
@@ -32,6 +31,7 @@ class Car {
         void stop();
 
         void changePotency(byte powerLeft, byte powerRight);
+        void startBluetooth(RXCallbacks<Car> *rxCallbacks);
 
         InfraRed **infras();
         Engine **engines();

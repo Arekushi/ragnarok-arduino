@@ -7,23 +7,23 @@
 #include <BLEUtils.h>
 #include <BLE2902.h>
 #include <ServerCallbacks.h>
-#include <GenericCharacteristicCallbacks.h>
+#include <RXCallbacks.h>
 
 template<class T>
 class Bluetooth {
     
     public:
         T &data;
-        GenericCharacteristicCallbacks<T> *callbacks;
+        RXCallbacks<T> *rxCallbacks;
 
         BLECharacteristic *characteristicTX;
         BLECharacteristic *characteristicRX;
         BLEService *service;
         BLEServer *server;
 
-        Bluetooth(T &data, GenericCharacteristicCallbacks<T> *callbacks) : data(data) {
-            this->callbacks = callbacks;
-            this->callbacks->setup(this);
+        Bluetooth(T &data, RXCallbacks<T> *rxCallbacks) : data(data) {
+            this->rxCallbacks = rxCallbacks;
+            this->rxCallbacks->setup(this);
             setup();
         }
 
@@ -63,7 +63,7 @@ class Bluetooth {
 
         void initRX() {
             characteristicRX = service->createCharacteristic(CHARACTERISTIC_UUID_RX, BLECharacteristic::PROPERTY_WRITE);
-            characteristicRX->setCallbacks(callbacks);
+            characteristicRX->setCallbacks(rxCallbacks);
         }
 };
 
