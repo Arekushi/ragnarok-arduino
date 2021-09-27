@@ -8,7 +8,6 @@
 #include <CurvedFrontRight.h>
 #include <Stationary.h>
 
-#include <Back.h>
 #include <Walk.h>
 #include <ReadInfra.h>
 #include <LeftSensorActivated.h>
@@ -18,7 +17,7 @@
 #include <CenterSensorActivated.h>
 #include <UltrasonicSawObstacle.h>
 
-void Forward::enter(Car data) {    
+void Forward::enter(Car data) {
     base::enter(data);
 }
 
@@ -35,29 +34,34 @@ void Forward::setActions() {
 void Forward::setTransitions() {
     // [Primario]
     addTransition(new Transition<Car>(
-        Singleton<LeftSensorActivated>::getInstance(), 
+        Singleton<LeftSensorActivated>::getInstance(),
         Singleton<AligningLeft>::getInstance(),
-        nullptr));
+        nullptr
+    ));
 
     addTransition(new Transition<Car>(
         Singleton<RightSensorActivated>::getInstance(),
         Singleton<AligningRight>::getInstance(),
-        nullptr));
+        nullptr
+    ));
 
     // [Secundario]
     addTransition(new Transition<Car>(
         Singleton<LeftCenterSensorsActivated>::getInstance(),
         Singleton<CurvedFrontLeft>::getInstance(),
-        nullptr));
+        nullptr
+    ));
 
     addTransition(new Transition<Car>(
         Singleton<RightCenterSensorsActivated>::getInstance(),
         Singleton<CurvedFrontRight>::getInstance(),
-        nullptr));
+        nullptr
+    ));
 
     // [Ultrasonic]
     addTransition(new Transition<Car>(
         Singleton<UltrasonicSawObstacle>::getInstance(),
         Singleton<Stationary>::getInstance(),
-        nullptr));
+        nullptr
+    ));
 }

@@ -10,6 +10,7 @@ Car::Car(State<Car> *initState) {
 }
 
 void Car::startBluetooth(RXCallbacks<Car> *rxCallbacks) {
+    machine->updateBehavior((int*) Behaviors::BLUETOOTH);
     bluetooth = new Bluetooth<Car>(*this, rxCallbacks);
     bluetooth->start();
 }

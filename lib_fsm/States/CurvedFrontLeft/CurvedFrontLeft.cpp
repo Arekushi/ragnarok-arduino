@@ -23,5 +23,6 @@ void CurvedFrontLeft::setTransitions() {
     addTransition(new Transition<Car>(
         Singleton<TimeToCurvedFront>::getInstance(),
         Singleton<AligningLeft>::getInstance(),
-        nullptr));
+        nullptr
+    ));
 }

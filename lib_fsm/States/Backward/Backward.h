@@ -1,14 +1,14 @@
-#ifndef Stationary_State_h
-#define Stationary_State_h
+#ifndef Backward_State_h
+#define Backward_State_h
 
 #include <State.h>
 
 class Car;
 
-class Stationary : public State<Car> {
+class Backward : public State<Car> {
 
     public:
-        Stationary() : base::State("Stationary") {}
+        Backward() : base::State("Backward") {}
         void enter(Car data) override;
         void exit(Car data) override;
         void setActions() override;

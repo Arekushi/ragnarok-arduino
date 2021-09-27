@@ -1,5 +1,5 @@
-#ifndef Single_again_h
-#define Single_again_h
+#ifndef Dictionary_h
+#define Dictionary_h
 
 #include <Arduino.h>
 #include <ArrayList.h>
@@ -17,14 +17,14 @@ class Dictionary {
         }
 
         void add(K *key, V *value) {
-            m_keys->addElement(key);
-            m_values->addElement(value);
+            m_keys->add(key);
+            m_values->add(value);
         }
 
         V *get(K *key) {
-            for(byte i = 0; i < m_values->getLength(); i++) {
-                if(m_keys->getArray()[i] == key) {
-                    return m_values->getArray()[i];
+            for(byte i = 0; i < m_values->length(); i++) {
+                if(m_keys->data()[i] == key) {
+                    return m_values->data()[i];
                 }
             }
 
@@ -32,11 +32,11 @@ class Dictionary {
         }
 
         K **getKeys() {
-            return m_keys.getArray();
+            return m_keys.data();
         }
 
         V **getValues() {
-            return m_values.getArray();
+            return m_values.data();
         }
 };
 

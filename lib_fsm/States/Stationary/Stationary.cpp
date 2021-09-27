@@ -16,6 +16,4 @@ void Stationary::setActions() {
     addAction(Singleton<Stop>::getInstance());
 }
 
-void Stationary::setTransitions() {
-    
-}
+void Stationary::setTransitions() { }

@@ -10,6 +10,7 @@
 #include <State.h>
 #include <InfraRedName.h>
 #include <EngineName.h>
+#include <Behaviors.h>
 #include <Bluetooth.h>
 
 using namespace PortConfigs;

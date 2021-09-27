@@ -24,10 +24,12 @@ void AligningLeft::setTransitions() {
     addTransition(new Transition<Car>(
         Singleton<CenterSensorActivated>::getInstance(), 
         Singleton<Forward>::getInstance(),
-        nullptr));
+        nullptr
+    ));
 
     /*addTransition(new Transition<Car>(
         Singleton<RightSensorActivated>::getInstance(), 
         Singleton<Forward>::getInstance(),
-        nullptr));*/
+        nullptr
+    ));*/
 }

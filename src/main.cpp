@@ -8,7 +8,7 @@ Car *car;
 void setup() {
     Serial.begin(115200);
     car = new Car(Singleton<Forward>::getInstance());
-    car->startBluetooth(Singleton<RXCallbacksCar>::getInstance());
+    // car->startBluetooth(Singleton<RXCallbacksCar>::getInstance());
 }
 
 void loop() {
