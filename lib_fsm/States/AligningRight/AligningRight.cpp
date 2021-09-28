@@ -9,7 +9,6 @@
 #include <LeftSensorActivated.h>
 
 void AligningRight::enter(Car data) {
-    base::enter(data);
 }
 
 void AligningRight::exit(Car data) {

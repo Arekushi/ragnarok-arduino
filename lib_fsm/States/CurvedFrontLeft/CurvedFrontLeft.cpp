@@ -6,9 +6,7 @@
 #include <AligningLeft.h>
 #include <TimeToCurvedFront.h>
 
-void CurvedFrontLeft::enter(Car data) {
-    base::enter(data);
-    
+void CurvedFrontLeft::enter(Car data) {    
     Singleton<TimeToCurvedFront>::getInstance()->start = millis();
 }
 

@@ -6,7 +6,6 @@
 #include <Stop.h>
 
 void Stationary::enter(Car data) {
-    base::enter(data);
 }
 
 void Stationary::exit(Car data) {

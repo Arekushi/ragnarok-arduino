@@ -7,8 +7,6 @@
 #include <TimeToCurvedFront.h>
 
 void CurvedFrontRight::enter(Car data) {
-    base::enter(data);
-
     Singleton<TimeToCurvedFront>::getInstance()->start = millis();
 }
 

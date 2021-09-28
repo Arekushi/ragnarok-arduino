@@ -5,7 +5,6 @@
 #include <Back.h>
 
 void Backward::enter(Car data) {
-    base::enter(data);
 }
 
 void Backward::exit(Car data) {

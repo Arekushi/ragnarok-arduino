@@ -9,7 +9,6 @@
 #include <CenterSensorActivated.h>
 
 void AligningLeft::enter(Car data) {
-    base::enter(data);
 }
 
 void AligningLeft::exit(Car data) {

@@ -18,7 +18,6 @@
 #include <UltrasonicSawObstacle.h>
 
 void Forward::enter(Car data) {
-    base::enter(data);
 }
 
 void Forward::exit(Car data) {
