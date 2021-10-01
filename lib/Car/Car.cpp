@@ -6,11 +6,13 @@ Car::Car(State<Car> *initState) {
     initEngines();
     initUltrasonic();
 
-    machine = new StateMachine<Car>(*this, initState);
+    machine = new StateMachine<Car>(*this, initState, LOG);
 }
 
 void Car::startBluetooth(RXCallbacks<Car> *rxCallbacks) {
-    machine->updateBehavior((int*) Behaviors::BLUETOOTH);
+    machine->currentBehavior((int) Behaviors::BLUETOOTH);
+    machine->log = false;
+    
     bluetooth = new Bluetooth<Car>(*this, rxCallbacks);
     bluetooth->start();
 }

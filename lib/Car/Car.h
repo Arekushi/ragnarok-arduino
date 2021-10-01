@@ -10,7 +10,6 @@
 #include <State.h>
 #include <InfraRedName.h>
 #include <EngineName.h>
-#include <Behaviors.h>
 #include <Bluetooth.h>
 
 using namespace PortConfigs;
@@ -33,6 +32,7 @@ class Car {
 
         void changePotency(byte powerLeft, byte powerRight);
         void startBluetooth(RXCallbacks<Car> *rxCallbacks);
+        void saveCheckpoint();
 
         InfraRed **infras();
         Engine **engines();

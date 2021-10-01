@@ -16,6 +16,7 @@ namespace OtherConfigs {
     const byte NORMAL_SPEED = 25;
     const byte RUN_SPEED = 70;
     const byte SPIN_SPEED = 40;
+    const bool LOG = true;
 }
 
 #endif

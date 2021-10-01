@@ -28,9 +28,12 @@ void RXCallbacksCar::onWrite(BLECharacteristic *characteristic) {
     if (rxValue.length() > 0) {
         char* value = const_cast<char*>(rxValue.c_str());
         State<Car> *state = m_states->get(value);
+        State<Car> *currentState = bluetooth->data.machine->currentState();
 
         if (state != nullptr) {
-            bluetooth->data.machine->setCurrentState(state);
+            if(state != currentState) {
+                bluetooth->data.machine->setCurrentState(state);
+            }
         }
     }
 }
