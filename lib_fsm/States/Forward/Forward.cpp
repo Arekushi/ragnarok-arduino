@@ -58,9 +58,9 @@ void Forward::setTransitions() {
     ));
 
     // [Ultrasonic]
-    addTransition(new Transition<Car>(
-        Singleton<UltrasonicSawObstacle>::getInstance(),
-        Singleton<Stationary>::getInstance(),
-        nullptr
-    ));
+    // addTransition(new Transition<Car>(
+    //     Singleton<UltrasonicSawObstacle>::getInstance(),
+    //     Singleton<Stationary>::getInstance(),
+    //     nullptr
+    // ));
 }

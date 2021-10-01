@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 namespace PortConfigs {
-    const byte ULTRA_PORTS[] = { 7, 6 };
+    const byte ULTRA_PORTS[] = { 16, 17 };
     const byte INFRAS_PORTS[] = { 15, 2, 4 };
     const byte PWM_CHANNELS[] = { 0, 1 };
     const byte ENGINES_PORTS[2][3] = {{ 27, 26, 25 }, { 13, 12, 14 }};

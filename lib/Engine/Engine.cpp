@@ -13,6 +13,7 @@ void Engine::setup() {
     pinMode(port[1], OUTPUT);
     ledcSetup(pwm, frequence, resolution);
     ledcAttachPin(port[2], pwm);
+    changePotency(200);
 }
 
 void Engine::forward() {

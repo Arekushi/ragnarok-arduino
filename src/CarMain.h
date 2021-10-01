@@ -9,6 +9,7 @@
 #include <AligningRight.h>
 #include <CurvedFrontLeft.h>
 #include <CurvedFrontRight.h>
+#include <Stationary.h>
 
 #include <RXCallbacksCar.h>
 
@@ -35,8 +36,8 @@ void setupStates() {
 }
 
 void setupCar() {
-    car = new Car(Singleton<Forward>::getInstance());
-    // car->startBluetooth(Singleton<RXCallbacksCar>::getInstance());
+    car = new Car(Singleton<Stationary>::getInstance());
+    car->startBluetooth(Singleton<RXCallbacksCar>::getInstance());
 }
 
 void executeMachine() {
