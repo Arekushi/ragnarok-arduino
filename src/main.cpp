@@ -4,6 +4,10 @@
 
 #include <Forward.h>
 #include <Backward.h>
+#include <AligningLeft.h>
+#include <AligningRight.h>
+#include <CurvedFrontLeft.h>
+#include <CurvedFrontRight.h>
 
 Car *car;
 
@@ -11,8 +15,20 @@ void setupStates() {
     State<Car> *forward = Singleton<Forward>::getInstance();
     State<Car> *backward = Singleton<Backward>::getInstance();
 
-    forward->oppositeState = backward;
-    backward->oppositeState = forward;
+    State<Car> *aligningLeft = Singleton<AligningLeft>::getInstance();
+    State<Car> *aligningRight = Singleton<AligningRight>::getInstance();
+    
+    State<Car> *curvedFrontLeft = Singleton<CurvedFrontLeft>::getInstance();
+    State<Car> *curvedFrontRight = Singleton<CurvedFrontRight>::getInstance();
+
+    forward->opposite = backward;
+    backward->opposite = forward;
+
+    aligningLeft->opposite = aligningRight;
+    aligningRight->opposite = aligningLeft;
+
+    curvedFrontLeft->opposite = curvedFrontRight;
+    curvedFrontRight->opposite = curvedFrontLeft;
 }
 
 void setup() {
