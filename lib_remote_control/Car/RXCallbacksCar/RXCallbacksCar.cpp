@@ -24,15 +24,13 @@ void RXCallbacksCar::setActions() {
     m_states->add("ST", Singleton<Stationary>::getInstance());
 }
 
-void RXCallbacksCar::onWrite(BLECharacteristic *characteristic) {
+void RXCallbacksCar::onWrite(NimBLECharacteristic *characteristic) {
     std::string rxValue = characteristic->getValue();
     
     if (rxValue.length() > 0) {
         char* value = const_cast<char*>(rxValue.c_str());
         State<Car> *state = m_states->get(value);
         State<Car> *currentState = bluetooth->data.machine->currentState();
-
-        Serial.println(state == nullptr);
 
         if (state != nullptr) {
             if(state != currentState) {

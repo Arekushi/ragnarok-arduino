@@ -1,14 +1,14 @@
 #ifndef TX_callbacks_h
 #define TX_callbacks_h
 
-#include <BLEDevice.h>
+#include <NimBLEDevice.h>
 #include <Singleton.h>
 
 template <class T>
 class Bluetooth;
 
 template <class T>
-class TXCallbacks : public BLECharacteristicCallbacks {
+class TXCallbacks : public NimBLECharacteristicCallbacks {
 
      friend class Singleton<T>;
 

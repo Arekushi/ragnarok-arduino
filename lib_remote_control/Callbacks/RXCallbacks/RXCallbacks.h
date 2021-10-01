@@ -1,14 +1,14 @@
 #ifndef RX_callbacks_h
 #define RX_callbacks_h
 
-#include <BLEDevice.h>
+#include <NimBLEDevice.h>
 #include <Singleton.h>
 
 template <class T>
 class Bluetooth;
 
 template <class T>
-class RXCallbacks : public BLECharacteristicCallbacks {
+class RXCallbacks : public NimBLECharacteristicCallbacks {
 
      friend class Singleton<T>;
 
@@ -16,7 +16,7 @@ class RXCallbacks : public BLECharacteristicCallbacks {
           Bluetooth<T> *bluetooth;
 
           virtual void setup(Bluetooth<T> *bluetooth) = 0;
-          virtual void onWrite(BLECharacteristic *characteristic) = 0;
+          virtual void onWrite(NimBLECharacteristic *characteristic) = 0;
 };
 
 #endif

@@ -11,7 +11,7 @@ class RXCallbacksCar : public RXCallbacks<Car> {
 
     public:
         RXCallbacksCar();
-        void onWrite(BLECharacteristic *characteristic) override;
+        void onWrite(NimBLECharacteristic *characteristic) override;
         void setup(Bluetooth<Car> *bluetooth) override;
         void setActions();
     

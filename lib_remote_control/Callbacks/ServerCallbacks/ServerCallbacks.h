@@ -1,13 +1,13 @@
 #ifndef Server_callbacks_h
 #define Server_callbacks_h
 
-#include <BLEDevice.h>
+#include <NimBLEDevice.h>
 
-class ServerCallbacks: public BLEServerCallbacks {
+class ServerCallbacks: public NimBLEServerCallbacks {
 
     public:
-        void onConnect(BLEServer *pServer);
-        void onDisconnect(BLEServer *pServer);
+        void onConnect(NimBLEServer *pServer);
+        void onDisconnect(NimBLEServer *pServer);
 };
 
 #endif

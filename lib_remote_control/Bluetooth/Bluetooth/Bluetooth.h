@@ -2,10 +2,10 @@
 #define Bluetooth_h
 
 #include <Wire.h>
-#include <BLEDevice.h>
-#include <BLEServer.h>
-#include <BLEUtils.h>
-#include <BLE2902.h>
+#include <NimBLEDevice.h>
+#include <NimBLEServer.h>
+#include <NimBLEUtils.h>
+// #include <BLE2902.h>
 #include <ServerCallbacks.h>
 #include <RXCallbacks.h>
 
@@ -16,10 +16,10 @@ class Bluetooth {
         T &data;
         RXCallbacks<T> *rxCallbacks;
 
-        BLECharacteristic *characteristicTX;
-        BLECharacteristic *characteristicRX;
-        BLEService *service;
-        BLEServer *server;
+        NimBLECharacteristic *characteristicTX;
+        NimBLECharacteristic *characteristicRX;
+        NimBLEService *service;
+        NimBLEServer *server;
 
         Bluetooth(T &data, RXCallbacks<T> *rxCallbacks) : data(data) {
             this->rxCallbacks = rxCallbacks;
@@ -46,9 +46,9 @@ class Bluetooth {
         const char *CHARACTERISTIC_UUID_TX = "0972EF8C-7613-4075-AD52-756F33D4DA91";
 
         void initServer() {
-            BLEDevice::init(BLUETOOTH_NAME);
+            NimBLEDevice::init(BLUETOOTH_NAME);
 
-            server = BLEDevice::createServer();
+            server = NimBLEDevice::createServer();
             server->setCallbacks(new ServerCallbacks());
         }
 
@@ -57,12 +57,12 @@ class Bluetooth {
         }
 
         void initTX() {
-            characteristicTX = service->createCharacteristic(CHARACTERISTIC_UUID_TX, BLECharacteristic::PROPERTY_NOTIFY);
-            characteristicTX->addDescriptor(new BLE2902());
+            characteristicTX = service->createCharacteristic(CHARACTERISTIC_UUID_TX, NIMBLE_PROPERTY::NOTIFY);
+            characteristicTX->addDescriptor(new NimBLE2904());
         }
 
         void initRX() {
-            characteristicRX = service->createCharacteristic(CHARACTERISTIC_UUID_RX, BLECharacteristic::PROPERTY_WRITE);
+            characteristicRX = service->createCharacteristic(CHARACTERISTIC_UUID_RX, NIMBLE_PROPERTY::WRITE);
             characteristicRX->setCallbacks(rxCallbacks);
         }
 };
