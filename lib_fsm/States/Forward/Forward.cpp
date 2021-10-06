@@ -22,7 +22,6 @@ void Forward::enter(Car data) {
 
 void Forward::exit(Car data) {
     data.stop();
-    delay(250);
 }
 
 void Forward::setActions() {
@@ -58,9 +57,9 @@ void Forward::setTransitions() {
     ));
 
     // [Ultrasonic]
-    // addTransition(new Transition<Car>(
-    //     Singleton<UltrasonicSawObstacle>::getInstance(),
-    //     Singleton<Stationary>::getInstance(),
-    //     nullptr
-    // ));
+    addTransition(new Transition<Car>(
+        Singleton<UltrasonicSawObstacle>::getInstance(),
+        Singleton<Stationary>::getInstance(),
+        nullptr
+    ));
 }

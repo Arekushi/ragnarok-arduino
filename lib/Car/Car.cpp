@@ -55,7 +55,7 @@ void Car::initEngines() {
 
 void Car::initInfraReds() {
     for(byte i = 0; i < 3; i++) {
-        m_infras[i] = new InfraRed(INFRA_NAMES[i], INFRAS_PORTS[i]);
+        m_infras[i] = new InfraRed(INFRA_NAMES[i], INFRAS_PORTS[i], INFRAS_COMPARERS[i]);
     }
 }
 

@@ -4,6 +4,7 @@
 
 void ReadInfra::execute(Car data) {
     for(byte i = 0; i < 3; i++) {
-        // data.infras()[i]->read();
+        data.infras()[i]->read();
+        // data.infras()[i]->show();
     }
 }

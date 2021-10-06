@@ -5,6 +5,8 @@
 #include <Backward.h>
 #include <AligningLeft.h>
 #include <AligningRight.h>
+#include <CurvedFrontRight.h>
+#include <CurvedFrontLeft.h>
 #include <Stationary.h>
 
 RXCallbacksCar::RXCallbacksCar() {

@@ -9,9 +9,11 @@
 #include <LeftSensorActivated.h>
 
 void AligningRight::enter(Car data) {
+    data.changePotency(255, 255);
 }
 
 void AligningRight::exit(Car data) {
+    data.changePotency(200, 200);
 }
 
 void AligningRight::setActions() {

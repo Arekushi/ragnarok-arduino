@@ -5,9 +5,10 @@
 
 namespace PortConfigs {
     const byte ULTRA_PORTS[] = { 16, 17 };
-    const byte INFRAS_PORTS[] = { 15, 2, 4 };
+    const byte INFRAS_PORTS[] = { 4, 2, 15 };
+    const unsigned short int INFRAS_COMPARERS[] = { 1000, 400, 1000 };
     const byte PWM_CHANNELS[] = { 0, 1 };
-    const byte ENGINES_PORTS[2][3] = {{ 27, 26, 25 }, { 13, 12, 14 }};
+    const byte ENGINES_PORTS[2][3] = {{ 13, 12, 14 }, { 27, 26, 25 }};
 }
 
 namespace OtherConfigs {

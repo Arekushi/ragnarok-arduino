@@ -9,9 +9,11 @@
 #include <CenterSensorActivated.h>
 
 void AligningLeft::enter(Car data) {
+    data.changePotency(255, 255);
 }
 
 void AligningLeft::exit(Car data) {
+    data.changePotency(200, 200);
 }
 
 void AligningLeft::setActions() {
