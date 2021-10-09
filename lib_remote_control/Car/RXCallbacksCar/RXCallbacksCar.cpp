@@ -33,6 +33,7 @@ void RXCallbacksCar::onWrite(NimBLECharacteristic *characteristic) {
         char* value = const_cast<char*>(rxValue.c_str());
         State<Car> *state = m_states->get(value);
         State<Car> *currentState = bluetooth->data.machine->currentState();
+        Serial.println(value);
 
         if (state != nullptr) {
             if(state != currentState) {

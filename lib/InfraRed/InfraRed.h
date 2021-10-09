@@ -7,7 +7,7 @@ class InfraRed {
     
     private:
         byte port;
-        bool value;
+        bool digitalValue;
         float analogValue;
         unsigned short int comparer;
 
@@ -15,7 +15,8 @@ class InfraRed {
         const char *name;
 
         InfraRed(const char *name, byte port, unsigned short int comparer);
-        bool getValue();
+        bool getAnalogValue();
+        bool getDigitalValue();
         void read();
         void setup();
         void show();

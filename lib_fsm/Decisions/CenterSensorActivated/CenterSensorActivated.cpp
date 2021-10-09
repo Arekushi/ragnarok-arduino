@@ -2,5 +2,5 @@
 #include <Car.h>
 
 bool CenterSensorActivated::decision(Car data) {
-    return data.infras(InfraRedName::CENTER)->getValue();
+    return data.infras(InfraRedName::CENTER)->getDigitalValue();
 }
