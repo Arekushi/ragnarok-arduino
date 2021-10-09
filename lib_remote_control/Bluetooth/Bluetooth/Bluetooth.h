@@ -5,7 +5,6 @@
 #include <NimBLEDevice.h>
 #include <NimBLEServer.h>
 #include <NimBLEUtils.h>
-// #include <BLE2902.h>
 #include <ServerCallbacks.h>
 #include <RXCallbacks.h>
 
@@ -47,6 +46,7 @@ class Bluetooth {
 
         void initServer() {
             NimBLEDevice::init(BLUETOOTH_NAME);
+            NimBLEDevice::setMTU(512);
 
             server = NimBLEDevice::createServer();
             server->setCallbacks(new ServerCallbacks());

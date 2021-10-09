@@ -10,12 +10,17 @@ InfraRed::InfraRed(const char *name, byte port, unsigned short int comparer) {
 }
 
 void InfraRed::read() {
-    value = digitalRead(port);
-    analogValue = analogRead(port);
+    digitalValue = digitalRead(port);
+    // analogValue = analogRead(port);
 }
 
-bool InfraRed::getValue() {
-    return analogValue >= comparer;
+bool InfraRed::getAnalogValue() {
+    // return analogValue >= comparer;
+    return true;
+}
+
+bool InfraRed::getDigitalValue() {
+    return digitalValue;
 }
 
 void InfraRed::setup() {
@@ -25,7 +30,8 @@ void InfraRed::setup() {
 void InfraRed::show() {
     Serial.print(name);
     Serial.print(F(" : "));
-    Serial.print(analogValue);
+    // Serial.print(analogValue);
     Serial.print(F(" |  D: "));
-    Serial.println(getValue());
+    Serial.println(digitalValue);
+    
 }
