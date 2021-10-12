@@ -2,9 +2,9 @@
 #include <Arduino.h>
 
 Car::Car(State<Car> *initState) {
-    initInfraReds();
-    initEngines();
-    initUltrasonic();
+    // initInfraReds();
+    // initEngines();
+    // initUltrasonic();
 
     machine = new StateMachine<Car>(*this, initState, LOG);
 }
@@ -15,6 +15,10 @@ void Car::startBluetooth(RXCallbacks<Car> *rxCallbacks) {
     
     bluetooth = new Bluetooth<Car>(*this, rxCallbacks);
     bluetooth->start();
+}
+
+void Car::startWifi() {
+    machine->currentBehavior((int) Behaviors::WIFI);
 }
 
 void Car::goForward() {

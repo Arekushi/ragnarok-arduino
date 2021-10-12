@@ -32,6 +32,8 @@ class Car {
 
         void changePotency(byte powerLeft, byte powerRight);
         void startBluetooth(RXCallbacks<Car> *rxCallbacks);
+        void startWifi();
+
         void saveCheckpoint();
 
         InfraRed **infras();
